@@ -144,4 +144,13 @@ Source-only probe: after `export PYTHONDONTWRITEBYTECODE=1 TMPDIR="$PWD/.relay-s
 
 Relay closed (Approved), no further turn needed. The harness owns the relay-only commit; no git command was run by this reviewer.
 
+
+### Attestation · relay-drive — 2026-11-14T20:25:23Z
+task: RELAY-marketing-gh2-plan
+reviewer: codex
+status: Approved
+reviewed-head: 00b0d02b8d5588fab2f17ca791c2a00fd9000627
+added-range: 14646+7687
+added-sha256: 4c57843b7fd531ba658652f67e7fbf79ab7ca7073e3e9affd365ba9245985367
+gate-run: undeclared
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
