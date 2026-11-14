@@ -20,4 +20,5 @@
 - Added a whole-catalog reading method to the marketing manager skill: collect product links from the listing pages, then request each product's data from inside the browser tab, five seconds apart, stopping at the first refusal. It read 50 products on a store that had blocked scripted requests.
 - Added a method to the marketing manager skill for filling another marketing tool's brand form from the brand file through the user's browser tab, leaving the save to the user.
 - Added a recipe and OpenAPI sanitizer for connecting Ahrefs to Insightful Pipe via the generic REST API connector, overcoming manifest size limits, enum caps, and OpenAPI 3.0 compatibility issues.
+- Added the event minder skill (`skills/event-minder/SKILL.md`), which plans and audits brand launches, product drops, and seasonal campaigns, verifies technical readiness (HTML tags, SEO, favicon, GSC, GA4), drafts multi-channel launch copy (LinkedIn, ProductHunt, social bios), designs viral product bundle giveaways, and tracks progress in `brands/<business>/launch-plan.md`.
 - Rewrote the README to describe Marketing Minder as a set of modules, with the LinkedIn Amplifier as one of them.

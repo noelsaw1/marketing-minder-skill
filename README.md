@@ -11,7 +11,7 @@ The agent drafts and advises. You post, publish and change your own site. Everyt
 | [Marketing manager](skills/marketing-manager/SKILL.md) | Reads your website and keeps your brand, ideal customer and offer in `brands/<business>/brand.md`. Start here. | Available |
 | [Market fit](skills/market-fit/SKILL.md) | Reviews your value proposition, home page copy, bundles and pricing against the brand file. | Available |
 | [LinkedIn Amplifier](skills/linkedin-amplifier/SKILL.md) | Finds experts and conversations worth joining in your first-degree LinkedIn network. | Available |
-| Season and holiday minder | Flags upcoming dates that matter to your business, early enough to act. | Planned |
+| [Event minder](skills/event-minder/SKILL.md) | Plans and audits launches, product drops, seasonal campaigns, and viral giveaways in `brands/<business>/launch-plan.md`. | Available |
 | SaaS solopreneur recipe | Growth playbook across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram. | Planned |
 | E-commerce recipe | The same for a Shopify or WooCommerce store that may also sell in person. | Planned |
 

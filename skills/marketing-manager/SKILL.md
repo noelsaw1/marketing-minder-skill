@@ -122,7 +122,7 @@ Name the module that fits the request, and say plainly when it does not exist ye
 
 - Finding people and conversations on LinkedIn: `skills/linkedin-amplifier/SKILL.md`.
 - Home page copy, value proposition, bundles and pricing: `skills/market-fit/SKILL.md`.
-- Upcoming seasonal and holiday dates: the season minder module (planned). Until it exists, keep the dates in Key dates here.
+- Launch plans, product drops, seasonal events, and giveaways: `skills/event-minder/SKILL.md`.
 - Growth across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram for a software business: the SaaS recipe module (planned).
 - Growth for a Shopify or WooCommerce store that may also sell in person: the e-commerce recipe module (planned).
 
