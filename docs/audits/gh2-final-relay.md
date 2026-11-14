@@ -119,4 +119,13 @@ Exit 0. Decisive output: `absent: {}`; missing/null/numeric/wrong identity and a
 
 Relay closed (Approved), no further turn needed. The harness owns the relay-only commit. Publication metadata/receipts may follow without changing this product-content verdict.
 
+
+### Attestation · relay-drive — 2026-11-14T20:35:30Z
+task: RELAY-marketing-gh2-final
+reviewer: codex
+status: Approved
+reviewed-head: c8b052f0a6d908cab350e6643e63d8ea786425f6
+added-range: 7156+8576
+added-sha256: f5a127ae550e3f7723f7a52716dce083916a2738b4c8b20d2b6a50c993b6963a
+gate-run: undeclared
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
