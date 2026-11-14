@@ -12,3 +12,4 @@
 - Added a local LinkedIn Connections.csv importer that seeds the inventory while preserving browser enrichment.
 - Added browser queue status and topic-prioritized batch planning within the content-load budget.
 - Added audience and use cases near the top of the README.
+- Added the marketing manager skill, which reads a business's website and keeps its brand, ideal customer and offer in one local Markdown brand file under the gitignored `brands/<business>/` folder, with every statement marked as read from the site, told by the owner, a guess, or unknown.

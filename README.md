@@ -27,6 +27,14 @@ To continue a scan, ask the agent to resume from its saved checkpoint (`temp/<ac
 
 See the [changelog](CHANGELOG.md) for changes to the workflow.
 
+## Your data and backups
+
+Your business data stays on your machine, in two gitignored folders: `brands/<business>/` for each company you work on (for example `brands/mangajdm/`) and `temp/<account>/` for LinkedIn network data. Git does not track either folder, so cloning, pushing or pulling this repository never saves or restores them.
+
+**Back these folders up yourself.** Use Time Machine or another backup system that covers the repository folder. If the folder is deleted, overwritten or lost with the machine, a backup is the only way to get the files back.
+
+This software is provided "as is", without warranty of any kind, under the terms of the [license](LICENSE). The authors are not responsible for your data, including its loss, its accuracy, or where you store, share or publish it. If you fork this repository, keep `brands/` and `temp/` in `.gitignore` so private business data is not pushed.
+
 ## Start with your LinkedIn export
 
 In LinkedIn, go to **Me → Settings & Privacy → Data Privacy → Download your data** (also labeled **Get a copy of your data**). Request the archive that includes connections, download it, and extract `Connections.csv`. LinkedIn includes email addresses according to each connection's export privacy settings. [LinkedIn export instructions](https://www.linkedin.com/help/recruiter/answer/a566336)
