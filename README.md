@@ -1,12 +1,43 @@
-# LinkedIn Amplifier
+# Marketing Minder
 
-LinkedIn Amplifier is an agent skill (compatible with Codex, Claude Code, Antigravity, and other `SKILL.md` harnesses) for finding people in your first-degree network who consistently start useful discussions in your field. It builds a watchlist by topic and suggests fresh posts where you have something specific to contribute.
+Marketing Minder is a set of agent skills that act as a marketing advisor for a small business. Each skill is one plain `SKILL.md` file, and they all read one shared brand file per business, so the agent stops planning every marketing task from scratch. It works with Claude, ChatGPT, Codex, Antigravity and other agents that can read `SKILL.md` files and a local folder.
 
-## Who's this for
+The agent drafts and advises. You post, publish and change your own site. Everything it knows about your business sits in Markdown files on your machine that you can open and edit.
+
+## Modules
+
+| Module | What it does | Status |
+|---|---|---|
+| [Marketing manager](skills/marketing-manager/SKILL.md) | Reads your website and keeps your brand, ideal customer and offer in `brands/<business>/brand.md`. Start here. | Available |
+| [Market fit](skills/market-fit/SKILL.md) | Reviews your value proposition, home page copy, bundles and pricing against the brand file. | Available |
+| [LinkedIn Amplifier](skills/linkedin-amplifier/SKILL.md) | Finds experts and conversations worth joining in your first-degree LinkedIn network. | Available |
+| Season and holiday minder | Flags upcoming dates that matter to your business, early enough to act. | Planned |
+| SaaS solopreneur recipe | Growth playbook across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram. | Planned |
+| E-commerce recipe | The same for a Shopify or WooCommerce store that may also sell in person. | Planned |
+
+## Start with the brand file
+
+Point your agent at this folder and ask:
+
+> Use the marketing manager skill to read example.com and create its brand file.
+
+Have a browser session open for the agent: its integrated browser, or a tab you opened for it. Many stores block scripted requests to product pages, so the agent reads through the browser and falls back to a plain fetch only when no browser is available.
+
+The agent reads your public pages and writes `brands/example/brand.md`. Every statement in it is marked as read from the site, told by you, a guess, or unknown, so a guessed customer profile is never read as fact. Correct the guesses, then ask for the next module:
+
+> Use the market fit skill on example.
+
+After the first write, the brand file changes only when you accept a change, and each accepted change is dated in its change log.
+
+## LinkedIn Amplifier
+
+LinkedIn Amplifier finds people in your first-degree network who consistently start useful discussions in your field. It builds a watchlist by topic and suggests fresh posts where you have something specific to contribute.
+
+### Who's this for
 
 Professionals who want to find peers and subject matter experts in their existing LinkedIn network, follow conversations in their field, and contribute from firsthand experience.
 
-## Use Cases
+### Use cases
 
 - **Find experts by topic.** Build a watchlist of direct connections whose posts regularly draw substantive questions, examples, and replies.
 - **Find conversations to join.** Get up to three recent posts with a suggested angle grounded in your experience.
@@ -25,17 +56,7 @@ Browser runs use one tab, space content-loading actions at least 15 seconds apar
 
 To continue a scan, ask the agent to resume from its saved checkpoint (`temp/<account>/checkpoint.json`). It verifies the signed-in account and skips profiles and posts it has already inspected, saving structured outputs (`connections.csv`, `watchlist.csv`, `posts.csv`, `opportunities.csv`, and `outcomes.csv`) in the gitignored `temp/<account>/` directory.
 
-See the [changelog](CHANGELOG.md) for changes to the workflow.
-
-## Your data and backups
-
-Your business data stays on your machine, in two gitignored folders: `brands/<business>/` for each company you work on (for example `brands/mangajdm/`) and `temp/<account>/` for LinkedIn network data. Git does not track either folder, so cloning, pushing or pulling this repository never saves or restores them.
-
-**Back these folders up yourself.** Use Time Machine or another backup system that covers the repository folder. If the folder is deleted, overwritten or lost with the machine, a backup is the only way to get the files back.
-
-This software is provided "as is", without warranty of any kind, under the terms of the [license](LICENSE). The authors are not responsible for your data, including its loss, its accuracy, or where you store, share or publish it. If you fork this repository, keep `brands/` and `temp/` in `.gitignore` so private business data is not pushed.
-
-## Start with your LinkedIn export
+### Start with your LinkedIn export
 
 In LinkedIn, go to **Me → Settings & Privacy → Data Privacy → Download your data** (also labeled **Get a copy of your data**). Request the archive that includes connections, download it, and extract `Connections.csv`. LinkedIn includes email addresses according to each connection's export privacy settings. [LinkedIn export instructions](https://www.linkedin.com/help/recruiter/answer/a566336)
 
@@ -47,7 +68,7 @@ python3 scripts/import_linkedin_export.py --account your-profile-slug "/path/to/
 
 Use the export owner's profile slug, the part after `/in/` in their profile URL. The importer reads the extracted English-header CSV, including its optional notes and UTF-8 BOM. It reports skipped rows with missing or invalid profile links and seeds `temp/<account>/connections.csv` without browser visits. Reimporting fills missing values and preserves existing nonblank data, including follower counts. Company, position, and connection date remain in the original export. Imported profiles are candidates for browser inspection.
 
-## Inventory your full network
+### Inventory your full network
 
 Start the first batch overnight if convenient. Keep the signed-in browser available and ask Codex to use the skill with this prompt:
 
@@ -63,7 +84,7 @@ python3 scripts/save_connections.py --account your-profile-slug < /path/to/obser
 
 Each input line is a JSON object with keys `name`, `linkedin_permalink`, `email`, and `followers`. Replaying observations produces the same rows. A new nonblank value updates the corresponding field and a blank observation preserves the last known value.
 
-## Plan a browser batch
+### Plan a browser batch
 
 ```sh
 python3 scripts/browser_queue.py status --account your-profile-slug
@@ -75,3 +96,13 @@ python3 scripts/browser_queue.py next-batch --account your-profile-slug \
 Both commands return JSON. Status separates inventory rows awaiting inspection from profiles marked inspected or inaccessible in the checkpoint. Inventory rows can come from an export or browser observation. The CSV has no source column. The queue also includes pending URLs from the checkpoint.
 
 Pass repeatable `--priority-url` flags in preference order for people with evidence of topic fit, such as a relevant role in the original export or a post you've already seen. The CLI fills the rest of the batch in permalink order. It defaults to 30 actions per run and reserves four per profile. Set the cost for your workflow and pass actions already used in the current run. Continue enforcing the actual action cap while browsing. A saved blocker yields an empty batch until resolved.
+
+## Your data and backups
+
+Your business data stays on your machine, in two gitignored folders: `brands/<business>/` for each company you work on (for example `brands/mangajdm/`) and `temp/<account>/` for LinkedIn network data. Git does not track either folder, so cloning, pushing or pulling this repository never saves or restores them.
+
+**Back these folders up yourself.** Use Time Machine or another backup system that covers the repository folder. If the folder is deleted, overwritten or lost with the machine, a backup is the only way to get the files back.
+
+This software is provided "as is", without warranty of any kind, under the terms of the [license](LICENSE). The authors are not responsible for your data, including its loss, its accuracy, or where you store, share or publish it. If you fork this repository, keep `brands/` and `temp/` in `.gitignore` so private business data is not pushed.
+
+See the [changelog](CHANGELOG.md) for changes to the skills.
