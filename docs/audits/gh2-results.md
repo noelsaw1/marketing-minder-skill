@@ -67,3 +67,7 @@ Read from README -> marketing-manager -> Event Minder and its referenced rules.
 Operator confirmed phased campaign plus checklist and default optional giveaway. Plan QA approved in `gh2-plan-relay.md`; all findings were in reviewed scope. No extra architecture or automated conversion utility added. Live browser flows, hosted checks (none configured), marketing outcomes, legal/platform eligibility and the connector's current UI limits remain unverified.
 
 Edit verdicts: account validation **helped** (red/green controls); URL input rejection **helped** (red/green); Event Minder, shared instructions and recipe **confounded** for real-world outcomes (author walkthrough/source evidence only). Lessons writer: **NO_ENTRY**; fixes/receipts suffice and no repository lessons system exists. Rating unchanged at 65/50/50/65, recurrence unknown.
+
+## Independent review closeout
+
+Plan and final Codex relay reviews both returned PASS/Approved with exit 0 and harness attestations. Final reviewed head c8b052f; subsequent commits contain only review/publication documentation, no product changes. Final reviewer independently probed checkpoint identity and URL controls; complete suite/CLI results remain producer evidence. See `gh2-final-relay.md` for full scope and limits.
