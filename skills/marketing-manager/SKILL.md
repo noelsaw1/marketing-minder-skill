@@ -19,7 +19,7 @@ If a brand file already exists in the folder, read it first and treat this run a
 
 ## Read the site
 
-Read only public pages, signed out. Cover, in this order and as far as they exist: the home page, the main navigation and footer, the main product, collection or pricing pages, the about page, the contact page, and the shipping, refund and terms pages. Read two or three product or service pages for the wording, not the whole catalog.
+Read only public pages, signed out. Cover, in this order and as far as they exist: the home page, the main navigation and footer, the main product, collection or pricing pages, the about page, the contact page, the shipping, refund and terms pages, and the FAQ and legal or imprint pages. Read two or three product or service pages for the wording, not the whole catalog.
 
 ### How to load pages
 
@@ -125,6 +125,41 @@ Name the module that fits the request, and say plainly when it does not exist ye
 - Upcoming seasonal and holiday dates: the season minder module (planned). Until it exists, keep the dates in Key dates here.
 - Growth across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram for a software business: the SaaS recipe module (planned).
 - Growth for a Shopify or WooCommerce store that may also sell in person: the e-commerce recipe module (planned).
+
+## Consistency check
+
+Run this audit as part of every first read and refresh, and on its own when the user asks whether the site agrees with itself. It compares what the site says about the same thing in different places. It uses the pages listed under Read the site, including the footer and the shipping and returns text on the product pages already read. It loads no others.
+
+Collect every statement of each item below, with the page it is on, then compare them.
+
+**Contact details.** Email addresses, phone numbers, postal addresses, business name and support hours, wherever they appear: contact page, footer, each policy, order and shipping text on product pages, and the legal or imprint page. Flag two different addresses given for the same purpose, an email address on a domain other than the store's, a contact method named in one place and missing from the contact page, and a business name spelled differently between pages.
+
+**Shipping.** Where the store ships, production and delivery times, shipping cost, free shipping offers and thresholds, and order cut-off advice. Compare the shipping policy with the announcement bar, the home page, product pages, product titles and any FAQ. Flag a free shipping claim in one place against "calculated at checkout" in another, different delivery times, and a region offered in one place and excluded in another.
+
+**Returns, refunds and cancellations.** The return window, who pays return postage, what cannot be returned, how to start a return, the cancellation window, and any warranty or guarantee. Compare the refund policy with product pages, the FAQ and the terms of service. Flag different windows, a warranty on a product page that the policy does not mention, and a warranty for a region the store does not ship to.
+
+**Policies against the catalog.** Flag a product type a policy names that the store does not sell. Where a policy lists the product types it covers or excludes, flag a product type the store sells that the list leaves out. A policy written for all orders or all items covers everything and gives no finding here.
+
+**Unfinished text.** Flag template placeholders left in public pages, such as bracketed "[Optional: ...]" notes, "$XX", "lorem ipsum", "your company name" or a sample address.
+
+**Dates.** Flag a policy's "last updated" date or a seasonal notice that is clearly out of date.
+
+Rules for this audit:
+
+- Report only what you can quote. A finding takes one of three shapes, and each quoted statement carries its own `[site: /path]` mark:
+  - A conflict between pages, which includes a policy against the catalog: quote both statements word for word, each with its page.
+  - A defect on one page, which covers unfinished text, an out-of-date notice and an email address on another domain: quote the statement with its page.
+  - A detail given on one page and missing from the page where a customer would look for it, such as a phone number in the footer that the contact page omits: quote the statement with its page and name the page that lacks it.
+- Outside those three shapes, a statement that appears once is not a finding, even if it looks unusual.
+- A missing page is a finding only when the site has no shipping policy or no refund policy at all. Mark it `[unknown]` and name the pages you read.
+- Do not say which statement is the right one. That is the owner's answer. Ask it as a question.
+- This is a check that the site agrees with itself. It is not legal advice and does not say whether a policy meets any law.
+
+Write the findings to `brands/<business-slug>/consistency-check.md` as a dated run, newest first, grouped under the headings above, with "none found" under a heading that is clean.
+
+On a first read, when you are creating the brand file, write each finding into Site notes and each question for the owner into Open questions. On a refresh or a standalone audit the brand file already exists, so propose those lines under the rules in Change the file, using `proposed-changes.md` when there are more than three.
+
+In the report, give the number of findings per heading and the single question that would settle the most of them.
 
 ## Fill another tool's brand form
 

@@ -1,5 +1,6 @@
 /temp/
 /brands/
+/relay-system/
 __pycache__/
 *.py[cod]
 .DS_Store
