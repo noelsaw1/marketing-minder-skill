@@ -4,8 +4,8 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-14.
 -->
 
-NEXT: Reviewer
-STATUS: Open
+NEXT: Producer
+STATUS: Approved
 ROUND: 1 / 3
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
@@ -110,5 +110,38 @@ Plan QA pending. Implementation not started beyond preservation of supplied hand
 6. The relay ends on **Approved** (Reviewer only). End each turn by committing just this file; no push.
 
 ## Log
+
+### Reviewer · Round 1
+
+#### What this proposes
+The plan audits the small skill collection and its three Python utilities, fixes checkpoint identity validation, sharpens shared instructions and Event Minder, and replaces the unvalidated Ahrefs snippet with a manual validation procedure. It preserves the supplied handoff and delivers bounded verification, a public synthetic audit receipt, and a PR through the existing task workflow.
+
+#### How the existing system works, per this document
+Marketing-manager owns a shared brand file consumed by market-fit and event-minder; LinkedIn uses separate account state. The Python tools share normalization and a single CSV merge implementation, while the browser queue reads inventory and checkpoint state without writing them.
+
+#### What it is not
+This proposes no new marketing platform, scheduler, database, conversion subsystem, or live account automation. It does not promise live analytics verification, legal approval, deployment, or merge.
+
+Input boundary: the paraphrase above was formed from the embedded plan before supplementary source inspection and was recorded in commentary before those reads. The technical assessment below is source-backed; approval concerns the plan, not completed implementation.
+
+swept file: yes
+
+VERDICT: PASS
+Basis: Ship this plan into implementation. The whole embedded artifact and the full declared product source set were reviewed, including pre-existing content and recipe Python; no additional pre-existing plan defect requiring revision was found. Existing product defects identified below are already covered by F1–F4. Acceptance is falsifiable and the scope fits a small local skill repository.
+
+- [Pass] F1 targets an actual source-level identity gap: `scripts/browser_queue.py:26` uses `state.get("account", account).lower()`, so an existing object lacking `account` takes the requested identity. The proposed absent-file/missing/wrong/malformed/correct-account cases distinguish fresh starts from unowned persisted state. `scripts/save_connections.py:29` parses the URL but its rejection predicate at lines 32–40 does not check userinfo; the planned credential rejection is accurately rated input hygiene, without an invented disclosure claim. Keep both fixes in their existing functions as planned.
+- [Pass] Requested launch categories are present and retained by F2's explicit “preserve all requested checklist categories” contract: SEO-friendly HTML (`skills/event-minder/SKILL.md:38`), SEO foundations (44), favicon (48), GSC (51), GA4 (54), social profiles (58 and 123), LinkedIn (70), ProductHunt (75), and default giveaways (82). Event types already group launches, drops, and seasonal campaigns (24–26). The planned three intake questions, new-store walkthrough, second seasonal event, and declined-giveaway case cover the requested sharpening and prevent stale readiness from carrying across events (`skills/event-minder/SKILL.md:104`). Maintain the explicit category coverage in the implementation receipt.
+- [Pass] F2 corrects misleading certainty rather than adding live actions: public-page auditing currently asks for GA4 collection and GSC submission (`skills/event-minder/SKILL.md:51`–56); entrant email currently becomes a marketing list (89), and the draft assumes a founder story and promo code (71, 79). The plan explicitly separates account-only unknowns, consent, factual copy, optional incentives, and draft/completion status. Its “no messages/actions execute” acceptance preserves the existing user-publishes boundary (10).
+- [Pass] F3 addresses concrete shared-state/privacy contracts. Domain-without-extension naming (`skills/marketing-manager/SKILL.md:12`) maps example.com and example.net to the same folder; its collision acceptance is therefore useful. Sample reading (22) cannot support unrestricted catalog absence claims (141); domain/date findings (135, 145, 151) need the planned qualification. The privacy rule (14), deployed-edit instruction (186), provenance handling (`skills/market-fit/SKILL.md:14`), and separate LinkedIn schemas (`skills/linkedin-amplifier/SKILL.md`, “Keep local results in `temp/<account>/`”) are all within the proposed bounded edits. Preserve accepted-change ownership and historical runs as planned.
+- [Pass] F4 chooses a proportionate correction. The recipe claims a valid converter (`recipes/insightfulpipe-ahrefs.md:54`) but silently filters missing paths (76), skips missing referenced components (115), rewrites arbitrary large enums to string (127–131), relabels the output version (151), and reports serialized character length instead of actual written UTF-8 bytes (164–167). Manual preparation with explicit endpoint/reference/security/version/byte validation, dated observations, and user-owned activation removes the unsupported success claim without creating another utility. The corresponding sanitizer success assertion in `CHANGELOG.md` is explicitly included in the plan's correction.
+- [Pass] Scope, rollback, handoff intent, and rating are appropriately bounded in the artifact: “The first task commit preserves the operator's unfinished Event Minder draft and its three documentation edits”; “Rollback: revert task commits”; “recoverable wrong progress or misleading recommendations, not observed loss”; and “trend unknown.” The current draft and its README/changelog/router entries remain in the supplied source. No enterprise architecture or new CI gate is warranted. Numeric ratings are prioritization judgments supported by this modest consequence description, not measured incident statistics.
+
+Evidence and limits: Codebase-memory Verify used the marketing-minder-skill project at its primary checkout, generation `2026-11-14T20:20:37Z`; scripts function search returned eight functions with `has_more: false`. Coverage checked the declared source/doc/test paths and root scope, with no recorded source-path gaps and seven excluded subtrees; LICENSE was untracked by graph metadata and the task plan absent from that primary index. Local source reads supply worktree evidence rather than assuming graph/worktree equivalence. `read_state` snippet agreed with local source. `trace_path(normalize, both)` was denied by automatic approval policy (“MCP tool call requires approval, but approval policy is never”); relationships were instead checked directly in the three complete utility sources. No private ignored state was read.
+
+Source-only probe: after `export PYTHONDONTWRITEBYTECODE=1 TMPDIR="$PWD/.relay-scratch/tmp"; mkdir -p "$TMPDIR"`, ran `python3 -B -` using `ast.parse(Path(path).read_text())` and top-level `ast.FunctionDef` enumeration for the three script paths. Exit 0; decisive output: `scripts/browser_queue.py: permalink, read_state, main`; `scripts/save_connections.py: normalize, merge, main`; `scripts/import_linkedin_export.py: read_export, main`; `Source-only AST inspection; no utilities or tests executed.` This is syntax/structure inspection, not runtime verification.
+
+[Unverified — needs clone run] The claimed five passing baseline tests and all future runtime/importer/queue checks remain for the producer's disposable full clone and final QA. No suites, executable fixtures, CLI runs, web, or live-account actions were performed this turn. Commit ancestry, unchanged primary, issue/PR state, and the stored issue rating were not independently queried; preserve these as producer provenance claims pending publication/exact-head checks, not reviewer-verified facts.  [Unverified — no citation]
+
+Relay closed (Approved), no further turn needed. The harness owns the relay-only commit; no git command was run by this reviewer.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
