@@ -173,6 +173,14 @@ Form inputs driven by a script framework ignore a value set directly. Set the va
 
 Do not press Save. Tell the user what you filled, what you left empty and which lines are guesses, and let them review and save. Saving sends their business data to a third party, and that step is theirs.
 
+## Connect accounts in another tool
+
+When the user asks you to connect one of their accounts, such as analytics or a social profile, to another marketing tool, you prepare the connection and the user approves it.
+
+Open the tool's connection setup for the right brand. Where it offers an access level, choose read-only, and say so: the user can widen it later. Where it offers more than one connector for the same service, pick the one that asks for the least and name the other in your report. Start the sign-in, then read the consent screen: the account it names and the permissions it lists. Check the permissions match the access level you chose.
+
+Stop at the account chooser or the consent screen. Do not choose the account, press Allow, or type a password or code. Tell the user which tab holds each consent screen, which account and permissions it shows, and what to pick on the screen that follows, such as which analytics property. Use a separate tab for each connection so one sign-in does not replace another.
+
 ## Keep the method current
 
 When a way of reading a site, a source of data or a check works where the written method failed, add it to this skill in the same session, in the section it belongs to, and add a line to `CHANGELOG.md`. Write the general method, not the one business's details: those go in its brand file. When a method fails, record that too, with the symptom, so the next run does not repeat it.
