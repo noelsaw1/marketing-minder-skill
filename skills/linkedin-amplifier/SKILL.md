@@ -64,4 +64,6 @@ Keep local results in `temp/<account>/` using deterministic filenames and schema
 - `opportunities.csv`: `post_url,author_permalink,topic,age,observed_discussion,audience_fit,comment_angle,observed_at`
 - `outcomes.csv`: `comment_url,post_url,topic,posted_at,check_24h_at,check_7d_at,author_replies,peer_replies,impressions,profile_views_baseline,profile_views_window,own_activity_notes`
 
+An existing checkpoint must contain an `account` string matching the requested profile slug (case-insensitive). If missing or mismatched, stop and verify the export/browser owner before repairing it; never guess ownership from its folder name. A missing checkpoint is a fresh start.
+
 Checkpoint periodically and verify the signed-in account before resuming. Keep private network data under the gitignored `temp/` directory. Report coverage, missing metrics, and any access blocker with the results.

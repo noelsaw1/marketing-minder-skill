@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- QA: reject unowned LinkedIn checkpoints and credential-bearing profile URLs; add focused queue/importer regression coverage.
+- Sharpened Event Minder into phased campaigns with owners, dates and checklists, optional default giveaways, event history, evidence-based readiness and factual draft copy.
+- Clarified business identity collisions, private output checks, catalog-audit coverage, source-owned skill updates and whole-repository dependencies.
+
 - Added a Codex skill that finds first-degree LinkedIn connections who consistently draw substantive discussion and recommends up to three recent posts to comment on.
 - Added an optional workflow for tracking replies, visible comment impressions, and profile-view trends.
 - Preserved exact, capped, and unavailable connection counts as separate categories.
@@ -19,6 +23,6 @@
 - Added a consistency check to the marketing manager skill: an audit that compares contact details, shipping, returns and refund statements across the site's pages, flags unfinished template text, and reports each difference with both statements quoted.
 - Added a whole-catalog reading method to the marketing manager skill: collect product links from the listing pages, then request each product's data from inside the browser tab, five seconds apart, stopping at the first refusal. It read 50 products on a store that had blocked scripted requests.
 - Added a method to the marketing manager skill for filling another marketing tool's brand form from the brand file through the user's browser tab, leaving the save to the user.
-- Added a recipe and OpenAPI sanitizer for connecting Ahrefs to Insightful Pipe via the generic REST API connector, overcoming manifest size limits, enum caps, and OpenAPI 3.0 compatibility issues.
+- Added an Ahrefs/Insightful Pipe setup recipe. QA later removed its unvalidated inline sanitizer; the recipe now requires a compatible manifest with explicit schema, reference and byte-size validation.
 - Added the event minder skill (`skills/event-minder/SKILL.md`), which plans and audits brand launches, product drops, and seasonal campaigns, verifies technical readiness (HTML tags, SEO, favicon, GSC, GA4), drafts multi-channel launch copy (LinkedIn, ProductHunt, social bios), designs viral product bundle giveaways, and tracks progress in `brands/<business>/launch-plan.md`.
 - Rewrote the README to describe Marketing Minder as a set of modules, with the LinkedIn Amplifier as one of them.

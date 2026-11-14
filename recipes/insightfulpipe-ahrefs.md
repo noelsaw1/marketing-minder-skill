@@ -1,213 +1,49 @@
-# Recipe: Connecting Ahrefs to Insightful Pipe via Generic REST API Connector
+# Recipe: Ahrefs data in Insightful Pipe
 
-This recipe documents how to connect **Ahrefs** to **Insightful Pipe** using Insightful Pipe's generic REST API connector.
+Use this recipe when the user wants Ahrefs metrics in Insightful Pipe through a generic REST API connector. First check the integrations actually offered in their workspace; prefer a suitable native connector when available. This is a preparation guide, not a shipped OpenAPI converter or a guarantee that a connector has been activated.
 
-Insightful Pipe offers 46 native integrations (including Google Analytics 4, Instagram, Meta Ads, TikTok, Google Search Console, Bing Webmaster Tools, and DataForSEO), but does not have a native Ahrefs connector. Connecting Ahrefs through the REST API connector exposes Ahrefs SEO metrics directly to Insightful Pipe workspaces and MCP toolsets.
+## What was observed
 
----
+The 2026-11-14 setup session reported a 524,288-byte manifest limit, a 200-value enum cap, OpenAPI compatibility errors and invalid enum defaults. Those are historical observations, not current provider contracts. The full-spec size, endpoint count, native-integration count and UI labels can change. Check the current connector's validation result instead of copying old counts.
 
-## Technical Obstacles with Raw Ahrefs OpenAPI Specs
+The earlier inline sanitizer was removed after QA showed it silently omitted required endpoints/unresolved references and could turn an integer enum into a string. Changing the `openapi` version field does not convert a schema. There is no validated generated manifest bundled in this repository.
 
-Directly pointing Insightful Pipe to the official Ahrefs OpenAPI URL (`https://docs.ahrefs.com/openapi.json`) or uploading raw sub-specs from `https://docs.ahrefs.com/reference/` fails due to four specific constraints:
+## Choose the queries
 
-1. **512 KB Manifest Limit**:
-   - The full Ahrefs API v3 specification covers 154 endpoints and is **2.8 MB**.
-   - Insightful Pipe enforces a strict 512 KB limit on manifests, returning:
-     > `Could not generate a preview. Manifest exceeded the 524288 byte limit.`
+Start from the current [Ahrefs API documentation](https://docs.ahrefs.com/en/api/docs/introduction) and its linked OpenAPI specification. Confirm endpoint availability, required parameters, response fields and account entitlement for the intended queries. These six paths are the original candidate set, not a promise they all exist in a later specification:
 
-2. **Enum Size Cap (200 values)**:
-   - Ahrefs defines exhaustive lists of 249 ISO country codes on query parameters (`country`) and response schemas.
-   - Insightful Pipe's backend validator rejects enums with more than 200 items, returning:
-     > `parameter 'country' exceeds the maximum supported enum size of 200 values.`
+| Candidate GET path | Intended use |
+|---|---|
+| `/site-explorer/metrics` | Domain traffic overview |
+| `/site-explorer/domain-rating` | Domain rating |
+| `/site-explorer/organic-keywords` | Ranking queries |
+| `/site-explorer/top-pages` | Organic landing pages |
+| `/site-explorer/backlinks-stats` | Backlink overview |
+| `/keywords-explorer/overview` | Keyword research |
 
-3. **OpenAPI 3.1 vs. 3.0 Incompatibilities**:
-   - Ahrefs uses OpenAPI 3.1 / 3.2 schema features, such as `examples` (plural) lists inside parameter schema objects.
-   - Insightful Pipe validates against OpenAPI 3.0.x rules where `examples` inside a `schema` object causes a validation failure:
-     > `OpenAPI validation failed: ... is not valid under any of the given schemas (Failed validating 'oneOf')`
+Include only the queries the business needs. Do not expose write operations as part of this read-only integration. API calls can consume units; agree the test query and limits before running one. Ahrefs documents [free test queries and usage considerations](https://docs.ahrefs.com/en/api/docs/introduction).
 
-4. **Upstream Schema Bugs**:
-   - Certain Ahrefs endpoints have default values that violate their own enum definitions (e.g. an empty default `""` in a country enum list on `/volume-by-country`), causing strict validators to fail:
-     > `OpenAPI validation failed: '' is not one of ['ad', 'ae', ...]`
+## Prepare and validate a compatible manifest
 
-5. **Tool Context Overhead**:
-   - Exposing 154 raw endpoints into an AI agent's tool context consumes substantial prompt tokens on every turn. Curating a high-signal set of 5–10 endpoints delivers the necessary SEO data with minimal token overhead.
+Use a provider-supplied compatible subset or a schema-aware conversion process appropriate to the connector's supported OpenAPI version. If neither is available, stop with the specific validation error; do not claim the old snippet solves it.
 
----
+1. Resolve the business folder using `skills/marketing-manager/SKILL.md`, confirm `brands/` is gitignored, and use `brands/<business-slug>/ahrefs-openapi.json`. Preserve an existing working manifest before replacement. Record upstream URL/retrieval date and selected endpoints beside the local artifact. Keep credentials out of every manifest and report.
+2. Require every selected path and GET operation to exist. Missing operations must be reported, not silently filtered out. Preserve operation parameters, response schemas and relevant security declarations; check operation-level overrides as well as global security.
+3. Resolve all references, including nested dependencies and any external references, using the source's reference rules. Unresolved references stop preparation. Preserve original types and constraints. If a documented connector limit requires narrowing an enum, explicitly document that loss of validation and keep upstream value restrictions available to the caller; never turn every large enum into a string.
+4. Validate the resulting document against its declared version and supported connector dialect. In particular, newer JSON Schema constructs are not made OpenAPI 3.0-compatible by replacing a version string or deleting `examples`. Consult the [OpenAPI 3.0.3 specification](https://spec.openapis.org/oas/v3.0.3) if that is the required target. Record validator/version, result and remaining limitations.
+5. Measure the actual saved UTF-8 file (`wc -c < brands/<business-slug>/ahrefs-openapi.json`, replacing the placeholder). Compare with the connector's current byte limit. A compact in-memory serialization does not establish the size of an indented file. No “under 100 KB” guarantee applies.
+6. Preview in the connector and confirm all selected GET endpoints, authentication and parameters are recognized. An accepted preview is not proof of correct API results. Any later functional test must use the agreed query/allowance and record its outcome without tokens or private response data in this repo.
 
-## Curated Endpoints for Store/Brand SEO
+## Prepare the connection; user activates
 
-For e-commerce stores (such as MangaJDM), the 6 most impactful endpoints are:
+Follow `skills/marketing-manager/SKILL.md` → Connect accounts in another tool. The user handles account selection, consent and secrets. Never ask them to paste an API key into chat, write it to source, or include it in an issue/PR.
 
-| Endpoint | Method | Purpose |
-| :--- | :--- | :--- |
-| `/site-explorer/metrics` | GET | Domain overview: organic traffic, organic traffic value, paid traffic, and historical trends. |
-| `/site-explorer/domain-rating` | GET | Domain Rating (DR) and referring domain counts. |
-| `/site-explorer/organic-keywords` | GET | Ranked search queries, positions, traffic share, and URL mappings. |
-| `/site-explorer/top-pages` | GET | Top organic traffic-driving pages. |
-| `/site-explorer/backlinks-stats` | GET | Total backlinks, referring domains, live vs. broken links. |
-| `/keywords-explorer/overview` | GET | Search volume, keyword difficulty (KD), and click metrics for target terms. |
+In the observed UI: Connected accounts → Add integration → REST API; name the connection Ahrefs; use Bearer-token authentication as required by the current API documentation. The user enters their key in the tool's secret field. Paste/upload only the validated manifest, then inspect the endpoint preview. If previewing would itself send API requests, first confirm it is within the agreed query allowance.
 
----
+Leave **Save & activate** to the user under the parent skill's connection protocol. Report what was prepared, any validation failures and whether activation is still pending. Verify activation from the resulting UI before reporting it as active.
 
-## Python Spec Generator & Sanitizer
+## Alternative: direct Ahrefs MCP
 
-Run this script to fetch the upstream Ahrefs v3 spec, extract the target endpoints, resolve all referenced `$ref` components, sanitize country enums, and output a valid OpenAPI 3.0.3 file under 100 KB:
+If the user only needs Ahrefs data in their AI client, consult the current [official Ahrefs MCP setup](https://docs.ahrefs.com/en/mcp/docs/introduction) and the guide for their client. Prefer that documented route over maintaining a custom REST manifest when it meets the need. The user completes the authorization; do not install configurations or connect accounts merely because this recipe was read.
 
-```python
-import json
-import urllib.request
-
-AHREFS_SPEC_URL = "https://docs.ahrefs.com/openapi.json"
-
-TARGET_PATHS = [
-    "/site-explorer/metrics",
-    "/site-explorer/domain-rating",
-    "/site-explorer/organic-keywords",
-    "/site-explorer/top-pages",
-    "/site-explorer/backlinks-stats",
-    "/keywords-explorer/overview",
-]
-
-# 1. Fetch upstream spec
-req = urllib.request.Request(AHREFS_SPEC_URL, headers={"User-Agent": "Mozilla/5.0"})
-with urllib.request.urlopen(req) as resp:
-    raw_data = json.load(resp)
-
-filtered_paths = {p: raw_data["paths"][p] for p in TARGET_PATHS if p in raw_data["paths"]}
-
-# 2. Recursively extract all referenced components
-components = {
-    "securitySchemes": {
-        "bearerAuth": {
-            "type": "http",
-            "scheme": "bearer",
-            "bearerFormat": "API Key",
-        }
-    },
-    "schemas": {},
-    "parameters": {},
-    "responses": {},
-}
-
-def extract_refs(obj):
-    refs = set()
-    if isinstance(obj, dict):
-        for k, v in obj.items():
-            if k == "$ref" and isinstance(v, str) and v.startswith("#/components/"):
-                parts = v.split("/")
-                if len(parts) == 4:
-                    refs.add((parts[2], parts[3]))
-            else:
-                refs.update(extract_refs(v))
-    elif isinstance(obj, list):
-        for item in obj:
-            refs.update(extract_refs(item))
-    return refs
-
-unresolved = extract_refs(filtered_paths)
-resolved = set()
-
-while unresolved:
-    kind, name = unresolved.pop()
-    if (kind, name) in resolved:
-        continue
-    resolved.add((kind, name))
-    if kind in raw_data.get("components", {}) and name in raw_data["components"][kind]:
-        item = raw_data["components"][kind][name]
-        if kind not in components:
-            components[kind] = {}
-        components[kind][name] = item
-        new_refs = extract_refs(item)
-        unresolved.update(new_refs - resolved)
-
-# 3. Sanitize enums exceeding 200 items (e.g. country codes) and fix OpenAPI 3.1 examples
-def sanitize(obj):
-    if isinstance(obj, dict):
-        # Strip enums larger than 50 items (country lists) to avoid the 200 enum limit
-        if "enum" in obj and isinstance(obj["enum"], list) and len(obj["enum"]) > 50:
-            del obj["enum"]
-            obj["type"] = "string"
-            if "example" not in obj:
-                obj["example"] = "us"
-        # Remove invalid enum defaults
-        if "enum" in obj and "default" in obj and obj["default"] not in obj["enum"]:
-            del obj["default"]
-        # Convert OpenAPI 3.1 schema.examples to OpenAPI 3.0 schema.example
-        if "examples" in obj and isinstance(obj["examples"], list):
-            if "example" not in obj and len(obj["examples"]) > 0:
-                obj["example"] = obj["examples"][0]
-            del obj["examples"]
-        for v in obj.values():
-            sanitize(v)
-    elif isinstance(obj, list):
-        for item in obj:
-            sanitize(item)
-
-sanitize(filtered_paths)
-sanitize(components)
-
-# 4. Construct valid OpenAPI 3.0.3 specification
-curated_spec = {
-    "openapi": "3.0.3",
-    "info": {
-        "title": "Ahrefs API for Insightful Pipe",
-        "description": "Curated Ahrefs API v3 endpoints for domain metrics, keywords, and backlinks.",
-        "version": "3.0.0",
-    },
-    "servers": [{"url": "https://api.ahrefs.com/v3"}],
-    "security": [{"bearerAuth": []}],
-    "paths": filtered_paths,
-    "components": components,
-}
-
-output_path = "brands/mangajdm/ahrefs-openapi.json"
-with open(output_path, "w") as f:
-    json.dump(curated_spec, f, indent=2)
-
-print(f"Generated {output_path} (size: {len(json.dumps(curated_spec))} bytes)")
-```
-
----
-
-## Step-by-Step Setup Guide in Insightful Pipe
-
-### Step 1: Obtain Your Ahrefs API Key
-1. Log in to [Ahrefs](https://app.ahrefs.com/).
-2. Navigate to **Account settings > API keys** (`https://app.ahrefs.com/account/api-keys`).
-3. Under **API keys**, click **Generate API key** (or copy an existing active API v3 token). Note: This is an API key (`Authorization: Bearer <TOKEN>`), not an MCP key.
-
-### Step 2: Open Insightful Pipe Connector Setup
-1. In Insightful Pipe, navigate to **Connected accounts** > **Add integration**.
-2. Select **REST API** (`/connectors/rest-api/new/`).
-3. Set **Name**: `Ahrefs`.
-
-### Step 3: Configure Authentication
-1. Under **Auth type**, select **BEARER TOKEN**.
-2. Paste your Ahrefs API key into the **Bearer token** input field.
-
-### Step 4: Supply the OpenAPI Specification
-1. Choose either:
-   - **PASTE**: Select the **PASTE** tab and paste the contents of `brands/mangajdm/ahrefs-openapi.json`.
-   - **UPLOAD**: Select the **UPLOAD** tab and choose `brands/mangajdm/ahrefs-openapi.json` from disk.
-2. Click **Load the endpoints** under **Preview / Connector runner**.
-3. Verify that the 6 endpoints appear in the list with `TRY` and `REMOVE` buttons:
-   - `GET /site-explorer/metrics`
-   - `GET /site-explorer/domain-rating`
-   - `GET /site-explorer/organic-keywords`
-   - `GET /site-explorer/top-pages`
-   - `GET /site-explorer/backlinks-stats`
-   - `GET /keywords-explorer/overview`
-
-### Step 5: Save & Activate
-1. Click **Save & activate** in the top right header.
-2. The Ahrefs integration is now active and exposed to Insightful Pipe's workspace and MCP servers.
-
----
-
-## Alternative: Ahrefs Official MCP Server
-
-If you only need AI agents (such as Claude Desktop, Cursor, or T3 Code) to query Ahrefs directly without unifying data in Insightful Pipe:
-
-1. Ahrefs provides an official native MCP server: [`github.com/ahrefs/ahrefs-mcp-server`](https://github.com/ahrefs/ahrefs-mcp-server).
-2. On the Ahrefs API keys page, click **Generate MCP key**.
-3. Add the MCP server configuration directly to your AI client's config file (e.g. `claude_desktop_config.json`).
+Public documentation checked 2026-11-14. This QA pass did not access an Ahrefs account or validate a live Insightful Pipe connection.

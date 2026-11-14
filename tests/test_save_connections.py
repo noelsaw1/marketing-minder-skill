@@ -51,6 +51,8 @@ class SaveConnectionsTests(unittest.TestCase):
             {"linkedin_permalink": "https://www.linkedin.com/in/alice/", "followers": True},
             {"linkedin_permalink": "https://www.linkedin.com/in/alice/", "name": False},
             {"linkedin_permalink": "http://www.linkedin.com/in/alice/"},
+            {"linkedin_permalink": "https://user:secret@www.linkedin.com/in/alice/"},
+            {"linkedin_permalink": "https://@www.linkedin.com/in/alice/"},
             {"linkedin_permalink": "https://evil.example.com/in/alice/"},
             {"linkedin_permalink": "https://www.linkedin.com/company/acme/"},
             {"linkedin_permalink": "https://www.linkedin.com/in/alice%2Fbob/"},

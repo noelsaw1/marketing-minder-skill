@@ -1,6 +1,10 @@
 # Marketing Minder
 
-Marketing Minder is a set of agent skills that act as a marketing advisor for a small business. Each skill is one plain `SKILL.md` file, and they all read one shared brand file per business, so the agent stops planning every marketing task from scratch. It works with Claude, ChatGPT, Codex, Antigravity and other agents that can read `SKILL.md` files and a local folder.
+Marketing Minder is a set of agent skills that act as a marketing advisor for a small business. Each skill is one plain `SKILL.md` file, and the business modules read one shared brand file per business, so the agent stops planning every marketing task from scratch. It works with Claude, ChatGPT, Codex, Antigravity and other agents that can read `SKILL.md` files and a local folder.
+
+LinkedIn Amplifier instead keeps account-scoped network data and can run without a brand file.
+
+Keep the whole repository available to your agent, and run helper commands from its root: the skills reference sibling modules and `scripts/`. Copying only one `SKILL.md` does not install those dependencies. No package installation is needed for the Python helpers.
 
 The agent drafts and advises. You post, publish and change your own site. Everything it knows about your business sits in Markdown files on your machine that you can open and edit.
 
@@ -11,7 +15,7 @@ The agent drafts and advises. You post, publish and change your own site. Everyt
 | [Marketing manager](skills/marketing-manager/SKILL.md) | Reads your website and keeps your brand, ideal customer and offer in `brands/<business>/brand.md`. Start here. | Available |
 | [Market fit](skills/market-fit/SKILL.md) | Reviews your value proposition, home page copy, bundles and pricing against the brand file. | Available |
 | [LinkedIn Amplifier](skills/linkedin-amplifier/SKILL.md) | Finds experts and conversations worth joining in your first-degree LinkedIn network. | Available |
-| [Event minder](skills/event-minder/SKILL.md) | Plans and audits launches, product drops, seasonal campaigns, and viral giveaways in `brands/<business>/launch-plan.md`. | Available |
+| [Event minder](skills/event-minder/SKILL.md) | Plans and audits launches, product drops, seasonal campaigns, and optional contests/giveaways as phased campaigns with checklists in `brands/<business>/launch-plan.md`. | Available |
 | SaaS solopreneur recipe | Growth playbook across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram. | Planned |
 | E-commerce recipe | The same for a Shopify or WooCommerce store that may also sell in person. | Planned |
 
@@ -104,5 +108,9 @@ Your business data stays on your machine, in two gitignored folders: `brands/<bu
 **Back these folders up yourself.** Use Time Machine or another backup system that covers the repository folder. If the folder is deleted, overwritten or lost with the machine, a backup is the only way to get the files back.
 
 This software is provided "as is", without warranty of any kind, under the terms of the [license](LICENSE). The authors are not responsible for your data, including its loss, its accuracy, or where you store, share or publish it. If you fork this repository, keep `brands/` and `temp/` in `.gitignore` so private business data is not pushed.
+
+## Local verification
+
+Run `python3 -B -m unittest discover -s tests` from the repository root. Tests use synthetic data; no LinkedIn session or API key is needed. This checks the Python helpers, not live platform behavior or marketing outcomes.
 
 See the [changelog](CHANGELOG.md) for changes to the skills.
