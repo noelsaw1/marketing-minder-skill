@@ -71,3 +71,5 @@ Edit verdicts: account validation **helped** (red/green controls); URL input rej
 ## Independent review closeout
 
 Plan and final Codex relay reviews both returned PASS/Approved with exit 0 and harness attestations. Final reviewed head c8b052f; subsequent commits contain only review/publication documentation, no product changes. Final reviewer independently probed checkpoint identity and URL controls; complete suite/CLI results remain producer evidence. See `gh2-final-relay.md` for full scope and limits.
+
+Historical scope note: the earlier no-further-product-change statement applied to the original c8b052f closeout. The later Event Minder follow-up changes product instructions; see `gh2-event-followup-results.md` for its independent approval and evidence.
