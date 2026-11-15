@@ -15,9 +15,11 @@ The agent drafts and advises. You post, publish and change your own site. Everyt
 | [Marketing manager](skills/marketing-manager/SKILL.md) | Reads your website and keeps your brand, ideal customer and offer in `brands/<business>/brand.md`. Start here. | Available |
 | [Market fit](skills/market-fit/SKILL.md) | Reviews your value proposition, home page copy, bundles and pricing against the brand file. | Available |
 | [LinkedIn Amplifier](skills/linkedin-amplifier/SKILL.md) | Finds experts and conversations worth joining in your first-degree LinkedIn network. | Available |
-| [Event minder](skills/event-minder/SKILL.md) | Plans and audits launches, product drops, seasonal campaigns, and optional contests/giveaways as phased campaigns with checklists in `brands/<business>/launch-plan.md`. | Available |
+| [Event minder](skills/event-minder/SKILL.md) | Plans and audits launches, product drops, seasonal campaigns, and optional contests/giveaways as phased campaigns with checklists in `brands/<business>/events/<YYYY-MM-DD>-<event-slug>.md`. | Available |
 | SaaS solopreneur recipe | Growth playbook across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram. | Planned |
-| E-commerce recipe | The same for a Shopify or WooCommerce store that may also sell in person. | Planned |
+| [E-commerce recipe](recipes/ecommerce.md) | Reviews Shopify or WooCommerce store pages, checkout, offers and small-store channels, including print-on-demand. | Available |
+| [Results review](skills/results-review/SKILL.md) | Compares two periods of site, social and store results from CSV or a read-only connector and proposes next steps. | Available |
+| [Weekly plan](skills/weekly-plan/SKILL.md) | Drafts a Monday–Sunday action plan, carries unfinished work forward and builds toward upcoming events. | Available |
 
 ## Start with the brand file
 

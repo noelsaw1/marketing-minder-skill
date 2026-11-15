@@ -124,7 +124,9 @@ Name the module that fits the request, and say plainly when it does not exist ye
 - Home page copy, value proposition, bundles and pricing: `skills/market-fit/SKILL.md`.
 - Launch plans, product drops, seasonal events, and giveaways: `skills/event-minder/SKILL.md`.
 - Growth across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram for a software business: the SaaS recipe module (planned).
-- Growth for a Shopify or WooCommerce store that may also sell in person: the e-commerce recipe module (planned).
+- Growth for a Shopify or WooCommerce store that may also sell in person: `recipes/ecommerce.md`.
+- Comparing site, social and store results and proposing next steps: `skills/results-review/SKILL.md`.
+- A recurring Monday–Sunday marketing plan: `skills/weekly-plan/SKILL.md`.
 
 ## Hand off to LinkedIn Amplifier
 

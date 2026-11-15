@@ -11,7 +11,7 @@ Create a phased campaign with dates, owners, draft copy and a readiness checklis
 
 Read `brands/<business-slug>/brand.md`, using the identity and privacy rules in `skills/marketing-manager/SKILL.md`. If missing, route there first. Before any report write, confirm `brands/` is gitignored. Do not put business data in tracked files, issues or PRs. Use Brand, Ideal customer, Offer, Voice, Channels in use, Key dates and Open questions. Carry `[site: /path]`, `[owner]`, `[guess]` and `[unknown]` marks into conclusions. Flag stale facts before using prices, stock or dates.
 
-Read any existing `launch-plan.md` before asking questions. Ask at most three questions whose answers change the plan; skip those already answered:
+Read relevant files under `brands/<business-slug>/events/` and any legacy `brands/<business-slug>/launch-plan.md` before asking questions, using the identity and precedence rules below. Ask at most three questions whose answers change the plan; skip those already answered:
 
 1. What is launching or changing, on what date and timezone, and what outcome would make the event successful?
 2. Who is the audience, which channels already exist, and who owns the work with what time/budget available?
@@ -25,7 +25,11 @@ Continue independent audit and drafting while answers are pending. Keep unknown 
 - **Product drop:** reuse existing accounts, recheck product/landing-page readiness, and draft product-specific copy. Scarcity or VIP access must be supported by the brand or owner.
 - **Seasonal campaign:** focus on the offer, dates/timezone, inventory, shipping cut-offs and follow-up. Recheck relevant foundations; account creation and Product Hunt may be N/A with a reason.
 
-Keep `brands/<business-slug>/launch-plan.md` as the business's event ledger. Start a distinct section with a stable event ID (for example `2026-holiday-sale`), type, target date/timezone and goal. New events go above older ones without deleting history. On a rerun, update only the selected event, retain completed actions and dated evidence, and record changed decisions. If multiple events could match, ask which one.
+Write one file per event at `brands/<business-slug>/events/<YYYY-MM-DD>-<event-slug>.md`. Use the target event date known at creation, or the creation date if the target is unknown; record which was used. The filename stem is the stable event ID. Keep the path/ID on reschedule: **in-file target date/timezone and milestone dates govern scheduling, never the filename date**. Distinct events on the same date need distinct slugs. Never overwrite a collision; confirm identity before reusing a file. On a rerun update only the selected event, retaining completed actions, dated evidence and changed decisions. Ask if multiple events could match.
+
+Legacy fallback: use `brands/<business-slug>/launch-plan.md` only for relevant events not represented under `events/`. Leave the legacy file unchanged. On a confirmed same-event rerun, create its event file with a link to the legacy path and, for a multi-event ledger, the specific event section/ID. Carry dated history, not fresh readiness. The event file then takes precedence for that event; readers must not schedule or count it again from the legacy file. Resolve ambiguous identity before copying or scheduling. New events always get separate files.
+
+Readers (Weekly Plan, Results Review and the e-commerce recipe) select relevant events by the in-file dates, milestones and stated goal, and keep concurrent events separate. Unknown dates stay unknown; flag conflicting dates to the owner.
 
 A prior PASS is historical evidence, not proof of current readiness. Recheck relevant items before launch and record a new dated observation; if unable, current readiness is UNCHECKED with the old result retained as history. Do not carry a previous event's completion status into a new one.
 
@@ -40,11 +44,12 @@ Technical statuses: **PASS** (criterion observed), **FAIL** (observed mismatch),
 | SEO-friendly HTML optimization | Descriptive page title and meta description; clear primary heading and logical hierarchy; viewport/mobile presentation; relevant Open Graph and social-card metadata with working image/URL. Evaluate relevance and rendering, not rigid character counts or an automatic failure for multiple headings. |
 | SEO foundations | Preferred canonical URL for each page; indexing directives including `noindex`; crawler access; discoverable, valid sitemap/index at its actual location. HTTP 200 alone is not valid XML. Missing `/sitemap.xml` is not failure if the actual sitemap is elsewhere. Robots controls crawling, not proof of indexing. Record intentional prelaunch restrictions and an owner task to review them at launch. |
 | Favicon | Icon reference/discovery, successful load and recognizable small-size rendering. Record what was actually seen. |
-| Google Search Console setup | Separate public verification hints from owner-verified property ownership and sitemap submission/status. Without authorized account evidence or owner confirmation, those account checks remain UNCHECKED; a missing HTML token does not disprove another verification method. Submission does not guarantee indexing. |
-| Google Analytics | Separate observed tag/container from correct property/destination and actual event collection. A GTM container alone does not prove GA4 installation. Without authorized diagnostic/property evidence or owner confirmation, collection remains UNCHECKED. Note the consent state in which observations were made. |
+| Google Search Console setup | Separate public verification hints from owner-verified property ownership and sitemap submission/status. Without authorized account evidence or owner confirmation, property ownership and sitemap submission each remain **UNCHECKED — owner to confirm**; a missing HTML token does not disprove another verification method. Submission does not guarantee indexing. |
+| Google Analytics | Separate observed tag/container from correct property/destination and actual event collection. A GTM container alone does not prove GA4 installation. Without authorized diagnostic/property evidence or owner confirmation, collection remains **UNCHECKED — owner to confirm**. Note the consent state in which observations were made. |
 | Social profile creation | Inventory LinkedIn, Instagram, Facebook, TikTok, X and any relevant additional channels. Recommend which to create or update based on audience and capacity. Existing accounts need review, not recreation; record N/A reasons for skipped channels. |
-| LinkedIn launch announcement | Draft a factual announcement in the brand/founder's voice, with one clear CTA. Use an origin story only if supplied; otherwise use a product-led announcement or marked questions. |
-| Product Hunt submission | Always consider it; confirm fit and current submission requirements. Draft a package when relevant, or record N/A with reason. Do not assume every store or seasonal sale qualifies. |
+| LinkedIn launch announcement | Only when selected from Channels in use or agreed with the owner; otherwise N/A (Not applicable) with reason and no LinkedIn draft. Draft a factual announcement in the brand/founder's voice, with one clear CTA. Use an origin story only if supplied; otherwise use a product-led announcement or marked questions. |
+| Product Hunt submission | Consider fit for the event and selected channels; confirm fit and current submission requirements. Draft a package when relevant, or record N/A with reason. Do not assume every store or seasonal sale qualifies. |
+| Pop-up opt-in / discount offer provider | Choose a provider such as Justuno, OptiMonk, or Poptin when useful; consider existing tools or no pop-up. Record provider, offer and decision as pending/selected/declined (or N/A with reason). This is a planning decision, not a technical PASS; the user configures accounts. |
 | Contests and giveaways | Recommend as an optional default; record pending, selected or declined plus reason. Drafting is not launch approval. |
 
 Title/description length targets are editing heuristics, not search-engine validation rules: see Google's [title guidance](https://developers.google.com/search/docs/appearance/title-link) and [snippet guidance](https://developers.google.com/search/docs/appearance/snippet). For account checks, use current [Search Console verification](https://support.google.com/webmasters/answer/9008080) and [Google tag verification](https://support.google.com/analytics/answer/15756111) guidance. Never mark a current setup verified from these general documents alone.
@@ -54,8 +59,8 @@ Title/description length targets are editing heuristics, not search-engine valid
 Draft per selected channel, preserving brand provenance. Do not invent customer proof, founder experiences, discounts, stock limits or delivery promises. Leave specific placeholders for unknown facts.
 
 - **Profiles:** proposed handle, display name, bio, avatar/header brief and destination link. Prefer recognizable consistency; handles need not be identical when unavailable. Check current platform limits/dimensions when preparing final copy. Build UTMs without losing existing URL parameters or fragments.
-- **LinkedIn:** launch announcement, CTA and suggested timing; hashtags are optional and audience-dependent.
-- **Product Hunt:** name, benefits-focused tagline, description, maker comment and media checklist. Check current official requirements before calling the package submission-ready. Include a promo code only when the owner supplied/approved it.
+- **LinkedIn (if selected):** event announcement, CTA and suggested timing; hashtags are optional and audience-dependent.
+- **Product Hunt (if relevant and selected):** name, benefits-focused tagline, description, maker comment and media checklist. Check current official requirements before calling the package submission-ready. Include a promo code only when the owner supplied/approved it.
 - **Seasonal/drop copy:** use the actual event, offer and deadlines, rather than repeating a first-ever brand-launch story.
 
 Deliverable statuses are **PENDING**, **DRAFTED**, **APPROVED**, **COMPLETED**, or **N/A**. APPROVED requires owner acceptance; COMPLETED requires observed publication/setup or dated owner confirmation. Keep draft and completion evidence separate from technical readiness.
@@ -79,8 +84,8 @@ A 10–14-day prelaunch window can be a planning suggestion, adjusted to the act
 
 For each event, include:
 
-1. **Event brief:** ID, business/site, type, goal/metric, date/timezone, owner, budget, assumptions and open questions.
-2. **Readiness checklist:** category, precise criterion, current status, dated evidence/source, next action, owner and due date. Retain all default categories, using N/A explicitly where appropriate.
+1. **Event brief:** stable ID (filename stem), filename-date basis, legacy source if any, business/site, type, goal/metric, date/timezone, owner, budget, assumptions and open questions.
+2. **Readiness checklist:** category, precise criterion, current status, dated evidence/source, next action, owner and due date. Retain all default categories, using N/A (Not applicable) with a reason where appropriate; do not draft skipped channels or require a store opening for an already-open store.
 3. **Phased campaign:** preparation/prelaunch, launch, follow-up/review. Each milestone has a date or relative offset, owner/TBD, dependency and deliverable status. Link the checklist and draft copy rather than duplicating them. Include an owner-run final purchase/form walkthrough where applicable; planning does not authorize test orders or submissions.
 4. **Draft copy and giveaway decision:** the selected channel drafts, optional giveaway brief and pending approvals.
 5. **Results and next review:** observed metric versus goal, source/window, what remains unknown and what to change next time. Keep proposals distinct from outcomes.
