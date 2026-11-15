@@ -13,7 +13,9 @@ The agent drafts and advises. You post, publish and change your own site. Everyt
 | [LinkedIn Amplifier](skills/linkedin-amplifier/SKILL.md) | Finds experts and conversations worth joining in your first-degree LinkedIn network. | Available |
 | Season and holiday minder | Flags upcoming dates that matter to your business, early enough to act. | Planned |
 | SaaS solopreneur recipe | Growth playbook across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram. | Planned |
-| E-commerce recipe | The same for a Shopify or WooCommerce store that may also sell in person. | Planned |
+| [E-commerce recipe](recipes/ecommerce.md) | Reviews Shopify or WooCommerce store pages, checkout, offers and small-store channels, including print-on-demand. | Available |
+| [Results review](skills/results-review/SKILL.md) | Compares two periods of site, social and store results from CSV or a read-only connector and proposes next steps. | Available |
+| [Weekly plan](skills/weekly-plan/SKILL.md) | Drafts a Monday–Sunday action plan, carries unfinished work forward and builds toward upcoming events. | Available |
 
 ## Start with the brand file
 

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added the e-commerce recipe for Shopify and WooCommerce: store pages, funnel and owner-run checkout checks, discount mechanics, small-store channels and print-on-demand caveats.
+- Added results review with CSV or read-only connector inputs, two-period site/social/store comparisons, post and format rankings, data-quality checks and proposed changes saved privately under `brands/<business-slug>/results/`.
+- Added weekly planning with a configurable daily minimum (default two), Monday–Sunday actions, unfinished-work carryover, links to Event Minder milestones and private plans under `brands/<business-slug>/weekly/`.
 - Added a Codex skill that finds first-degree LinkedIn connections who consistently draw substantive discussion and recommends up to three recent posts to comment on.
 - Added an optional workflow for tracking replies, visible comment impressions, and profile-view trends.
 - Preserved exact, capped, and unavailable connection counts as separate categories.
