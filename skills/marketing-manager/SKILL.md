@@ -126,6 +126,14 @@ Name the module that fits the request, and say plainly when it does not exist ye
 - Growth across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram for a software business: the SaaS recipe module (planned).
 - Growth for a Shopify or WooCommerce store that may also sell in person: the e-commerce recipe module (planned).
 
+## Hand off to LinkedIn Amplifier
+
+For business-focused LinkedIn research, load `skills/linkedin-amplifier/SKILL.md` and pass the selected business's brand-file path, objective, Ideal customer, Offer, Voice, relevant Key dates and any active event ID. Preserve provenance marks; inferred audience fit stays provisional. Confirm which personal LinkedIn account the user wants to research—brand identity is not account identity.
+
+Let Amplifier select topics and research conversations under its existing first-degree, pacing and checkpoint rules. Brand context can guide relevance and wording, but cannot establish the user's personal experience or authorize contacting anyone. For an event, pass its announcement brief; Event Minder owns the announcement draft and Amplifier owns network research and comment opportunities.
+
+Return the concise research outcome to `brands/<business-slug>/linkedin-research.md`: date, account slug, objective/event ID, topics, coverage, relevant findings, selected public post links and next actions. Keep raw connection lists, contact information and account checkpoints in `temp/<account>/`; do not copy them into brand files. On reruns append a dated entry, retaining earlier findings. Propose durable brand updates through the existing accepted-change protocol. LinkedIn-only requests still work without a brand file.
+
 ## Consistency check
 
 Run this audit as part of every first read and refresh, and on its own when the user asks whether the site agrees with itself. It compares what the site says about the same thing in different places. It uses the pages listed under Read the site, including the footer and the shipping and returns text on the product pages already read. It loads no others.

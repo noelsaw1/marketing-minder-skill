@@ -2,7 +2,7 @@
 
 Marketing Minder is a set of agent skills that act as a marketing advisor for a small business. Each skill is one plain `SKILL.md` file, and the business modules read one shared brand file per business, so the agent stops planning every marketing task from scratch. It works with Claude, ChatGPT, Codex, Antigravity and other agents that can read `SKILL.md` files and a local folder.
 
-LinkedIn Amplifier instead keeps account-scoped network data and can run without a brand file.
+LinkedIn Amplifier keeps account-scoped network data and can run without a brand file. Marketing Manager can also pass it a business audience, voice and campaign goal, then retain a concise dated research summary in `brands/<business>/linkedin-research.md`. Raw network/contact data stays under `temp/<account>/`.
 
 Keep the whole repository available to your agent, and run helper commands from its root: the skills reference sibling modules and `scripts/`. Copying only one `SKILL.md` does not install those dependencies. No package installation is needed for the Python helpers.
 

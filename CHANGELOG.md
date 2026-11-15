@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Connected Marketing Manager and LinkedIn Amplifier with an optional brand/campaign handoff and dated business research summaries while preserving standalone use and account-scoped network data.
+
 - QA: reject unowned LinkedIn checkpoints and credential-bearing profile URLs; add focused queue/importer regression coverage.
 - Sharpened Event Minder into phased campaigns with owners, dates and checklists, optional default giveaways, event history, evidence-based readiness and factual draft copy.
 - Clarified business identity collisions, private output checks, catalog-audit coverage, source-owned skill updates and whole-repository dependencies.
