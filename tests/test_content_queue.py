@@ -4,6 +4,7 @@ import csv
 import datetime
 import io
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -585,7 +586,7 @@ class CommandTests(unittest.TestCase):
         self.assertNotIn("token", result.stdout.lower())
 
     def test_guides_and_routines_name_the_validator_limits(self):
-        guides = ROOT / "integrations" / "grok-bot"
+        guides = ROOT / "skills" / "content-drafts"
         x_guide = (guides / "platforms" / "x.md").read_text(encoding="utf-8")
         linkedin = (guides / "platforms" / "linkedin.md").read_text(encoding="utf-8")
         instagram = (guides / "platforms" / "instagram.md").read_text(encoding="utf-8")
@@ -606,6 +607,23 @@ class CommandTests(unittest.TestCase):
         skill = (guides / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("events/", skill)
         self.assertIn("filename", skill.lower())
+        for relative_path in (
+            "SKILL.md",
+            "platforms/x.md",
+            "platforms/linkedin.md",
+            "platforms/instagram.md",
+            "routines/weekly-content-batch.md",
+            "routines/daily-x-idea.md",
+        ):
+            pointer = ROOT / "integrations" / "grok-bot" / relative_path
+            target = guides / relative_path
+            self.assertIn(
+                f"]({os.path.relpath(target, pointer.parent)})",
+                pointer.read_text(encoding="utf-8"),
+            )
+        for prompt in (weekly, daily):
+            self.assertNotIn("Settings, Bot", prompt)
+            self.assertIn("skills/content-drafts/SKILL.md", prompt)
 
 
 if __name__ == "__main__":

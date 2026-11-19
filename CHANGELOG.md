@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Added Grok Bot content drafts under `integrations/grok-bot/`: a skill, X/LinkedIn/Instagram guides, copy-paste routine prompts, and `scripts/content_queue.py`. The script builds a private queue from the brand file and per-event files, schedules from the in-file event date, validates platform limits, and exports Buffer, Postiz and X draft files. Contacting Postiz is off unless you opt in, and that command creates drafts only.
+- Added a portable content drafts workflow under `skills/content-drafts/`, with Grok Bot setup in `integrations/grok-bot/`: a skill, X/LinkedIn/Instagram guides, copy-paste routine prompts, and `scripts/content_queue.py`. The script builds a private queue from the brand file and per-event files, schedules from the in-file event date, validates platform limits, and exports Buffer, Postiz and X draft files. Contacting Postiz is off unless you opt in, and that command creates drafts only.
 
 - Event Minder now saves separate dated event files, makes channel/giveaway sections conditional, and labels unverified account checks UNCHECKED — owner to confirm. Updated all three event-plan readers and preserved pop-up provider choices (Justuno, OptiMonk, Poptin).
 
