@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added Grok Bot content drafts under `integrations/grok-bot/`: a skill, X/LinkedIn/Instagram guides, copy-paste routine prompts, and `scripts/content_queue.py`. The script builds a private queue from the brand file and per-event files, schedules from the in-file event date, validates platform limits, and exports Buffer, Postiz and X draft files. Contacting Postiz is off unless you opt in, and that command creates drafts only.
+
 - Event Minder now saves separate dated event files, makes channel/giveaway sections conditional, and labels unverified account checks UNCHECKED — owner to confirm. Updated all three event-plan readers and preserved pop-up provider choices (Justuno, OptiMonk, Poptin).
 
 - Connected Marketing Manager and LinkedIn Amplifier with an optional brand/campaign handoff and dated business research summaries while preserving standalone use and account-scoped network data.
