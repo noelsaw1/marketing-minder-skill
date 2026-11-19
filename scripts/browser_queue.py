@@ -23,7 +23,11 @@ def read_state(directory, account):
             profiles = {permalink(row["linkedin_permalink"]) for row in csv.DictReader(source)}
     checkpoint = directory / "checkpoint.json"
     state = json.loads(checkpoint.read_text(encoding="utf-8")) if checkpoint.exists() else {}
-    if not isinstance(state, dict) or state.get("account", account).lower() != account:
+    if checkpoint.exists() and (
+        not isinstance(state, dict)
+        or not isinstance(state.get("account"), str)
+        or state["account"].lower() != account
+    ):
         raise ValueError("Checkpoint does not belong to the requested account")
     buckets = {}
     for name in ("inspected", "pending", "inaccessible"):

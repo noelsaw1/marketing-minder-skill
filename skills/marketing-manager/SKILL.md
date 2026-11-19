@@ -9,7 +9,7 @@ Keep one brand file per business. It is the single record the other modules read
 
 ## Where the brand file lives
 
-Each business gets its own folder under `brands/` at the root of this repository: `brands/<business-slug>/brand.md`, where the slug is the domain without the extension, in lowercase. MangaJDM.com is `brands/mangajdm/brand.md`. Create the folder on first use. Other modules write their files for that business into the same folder.
+Each business gets its own folder under `brands/` at the root of this repository: `brands/<business-slug>/brand.md`, where the slug is the domain without the extension, in lowercase. MangaJDM.com is `brands/mangajdm/brand.md`. Before reusing a folder, compare the requested site with the existing file's `Site:` identity; ask if different domains are the same business. Never merge distinct businesses just because their domain stems match. Keep existing slugs; for a new collision, use a distinct slug such as `example-net`. Slugs must contain only lowercase letters, digits and hyphens, and stay directly under `brands/`. Create the folder on first use. Other modules write their files for that business into the same folder.
 
 `brands/` is gitignored because the files hold private business details. Before the first write, run `git check-ignore -q brands/` from the repository root and stop if it fails. Never stage, force-add or commit anything under `brands/`, and never copy its contents into a tracked file, an issue or a pull request.
 
@@ -122,11 +122,19 @@ Name the module that fits the request, and say plainly when it does not exist ye
 
 - Finding people and conversations on LinkedIn: `skills/linkedin-amplifier/SKILL.md`.
 - Home page copy, value proposition, bundles and pricing: `skills/market-fit/SKILL.md`.
-- Upcoming seasonal and holiday dates: the season minder module (planned). Until it exists, keep the dates in Key dates here.
+- Launch plans, product drops, seasonal events, and giveaways: `skills/event-minder/SKILL.md`.
 - Growth across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram for a software business: the SaaS recipe module (planned).
 - Growth for a Shopify or WooCommerce store that may also sell in person: `recipes/ecommerce.md`.
 - Comparing site, social and store results and proposing next steps: `skills/results-review/SKILL.md`.
 - A recurring Monday–Sunday marketing plan: `skills/weekly-plan/SKILL.md`.
+
+## Hand off to LinkedIn Amplifier
+
+For business-focused LinkedIn research, load `skills/linkedin-amplifier/SKILL.md` and pass the selected business's brand-file path, objective, Ideal customer, Offer, Voice, relevant Key dates and any active event ID. Preserve provenance marks; inferred audience fit stays provisional. Confirm which personal LinkedIn account the user wants to research—brand identity is not account identity.
+
+Let Amplifier select topics and research conversations under its existing first-degree, pacing and checkpoint rules. Brand context can guide relevance and wording, but cannot establish the user's personal experience or authorize contacting anyone. For an event, pass its announcement brief; Event Minder owns the announcement draft and Amplifier owns network research and comment opportunities.
+
+Return the concise research outcome to `brands/<business-slug>/linkedin-research.md`: date, account slug, objective/event ID, topics, coverage, relevant findings, selected public post links and next actions. Keep raw connection lists, contact information and account checkpoints in `temp/<account>/`; do not copy them into brand files. On reruns append a dated entry, retaining earlier findings. Propose durable brand updates through the existing accepted-change protocol. LinkedIn-only requests still work without a brand file.
 
 ## Consistency check
 
@@ -134,23 +142,25 @@ Run this audit as part of every first read and refresh, and on its own when the 
 
 Collect every statement of each item below, with the page it is on, then compare them.
 
-**Contact details.** Email addresses, phone numbers, postal addresses, business name and support hours, wherever they appear: contact page, footer, each policy, order and shipping text on product pages, and the legal or imprint page. Flag two different addresses given for the same purpose, an email address on a domain other than the store's, a contact method named in one place and missing from the contact page, and a business name spelled differently between pages.
+**Contact details.** Email addresses, phone numbers, postal addresses, business name and support hours, wherever they appear: contact page, footer, each policy, order and shipping text on product pages, and the legal or imprint page. Flag two different addresses given for the same purpose, a contact method named in one place and missing from the contact page, and a business name spelled differently between pages.
+
+A different email domain alone is not a defect: the business may use a provider or another brand domain. Ask only when there is conflicting contact evidence.
 
 **Shipping.** Where the store ships, production and delivery times, shipping cost, free shipping offers and thresholds, and order cut-off advice. Compare the shipping policy with the announcement bar, the home page, product pages, product titles and any FAQ. Flag a free shipping claim in one place against "calculated at checkout" in another, different delivery times, and a region offered in one place and excluded in another.
 
 **Returns, refunds and cancellations.** The return window, who pays return postage, what cannot be returned, how to start a return, the cancellation window, and any warranty or guarantee. Compare the refund policy with product pages, the FAQ and the terms of service. Flag different windows, a warranty on a product page that the policy does not mention, and a warranty for a region the store does not ship to.
 
-**Policies against the catalog.** Flag a product type a policy names that the store does not sell. Where a policy lists the product types it covers or excludes, flag a product type the store sells that the list leaves out. A policy written for all orders or all items covers everything and gives no finding here.
+**Policies against the catalog.** Flag a product type a policy names that a complete catalog or the owner confirms the store does not sell. A two- or three-page sample cannot establish absence; otherwise record this as unverified. Where a policy lists the product types it covers or excludes, flag a product type the store sells that the list leaves out. A policy written for all orders or all items covers everything and gives no finding here.
 
 **Unfinished text.** Flag template placeholders left in public pages, such as bracketed "[Optional: ...]" notes, "$XX", "lorem ipsum", "your company name" or a sample address.
 
-**Dates.** Flag a policy's "last updated" date or a seasonal notice that is clearly out of date.
+**Dates.** Flag an expired offer or deadline still presented as current, quoting its date and context. An old policy update date alone does not prove that the policy is wrong.
 
 Rules for this audit:
 
 - Report only what you can quote. A finding takes one of three shapes, and each quoted statement carries its own `[site: /path]` mark:
   - A conflict between pages, which includes a policy against the catalog: quote both statements word for word, each with its page.
-  - A defect on one page, which covers unfinished text, an out-of-date notice and an email address on another domain: quote the statement with its page.
+  - A defect on one page, which covers unfinished text, an expired notice: quote the statement with its page.
   - A detail given on one page and missing from the page where a customer would look for it, such as a phone number in the footer that the contact page omits: quote the statement with its page and name the page that lacks it.
 - Outside those three shapes, a statement that appears once is not a finding, even if it looks unusual.
 - A missing page is a finding only when the site has no shipping policy or no refund policy at all. Mark it `[unknown]` and name the pages you read.
@@ -185,7 +195,7 @@ Stop at the account chooser or the consent screen. Do not choose the account, pr
 
 ## Keep the method current
 
-When a way of reading a site, a source of data or a check works where the written method failed, add it to this skill in the same session, in the section it belongs to, and add a line to `CHANGELOG.md`. Write the general method, not the one business's details: those go in its brand file. When a method fails, record that too, with the symptom, so the next run does not repeat it.
+When a way of reading a site, a source of data or a check works where the written method failed, propose the reusable improvement. Apply it only when source changes are in the task scope, in this owning repository with a `CHANGELOG.md` entry. Never edit an installed/generated skill copy or deploy changes as part of a business audit. Write the general method, not the one business's details: those go in its brand file. When a method fails, record that too, with the symptom, so the next run does not repeat it.
 
 Known so far, from the first trial on a Shopify store on 2026-11-14: scripted fetches of the home page, policy pages and `/collections.json` returned 200; `/products.json` and every `/products/<handle>` page returned 429 to scripted fetches, with or without browser headers; three further scripted requests then returned 403 on pages that had worked. The same product pages loaded normally in a browser session minutes later. From that tab, 50 product data requests at five-second spacing all returned 200. The listing showed 24 products per page across three pages, and `/collections.json` counts were out of date for products added that week, so count products from the listing, not from collection counts. The browser tool cut off scripts after 15 seconds, which is why the catalog loop runs unattended and is polled.
 

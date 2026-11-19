@@ -11,6 +11,8 @@ Work from the brand file that the marketing manager keeps. You compare what the 
 
 Read `brands/<business-slug>/brand.md`. If it does not exist, stop and send the user to `skills/marketing-manager/SKILL.md` to create it. If `Last read from site` is more than 90 days old, say so and offer a refresh first.
 
+Before writing any report, apply the marketing manager's business identity and `brands/` privacy checks, even when invoked directly.
+
 Read these sections: Brand, Ideal customer, Offer, Voice, Site notes and Open questions. Carry each statement's mark with it. A suggestion that rests on a `[guess]` is itself a guess, and you say so.
 
 Read live pages only for the home page and up to three product or pricing pages, under the reading rules in the marketing manager skill: a browser session first, signed out, one page at a time, and stop for the whole site on an HTTP 429 or 403, a CAPTCHA or a login wall.

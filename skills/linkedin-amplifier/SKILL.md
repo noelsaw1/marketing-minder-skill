@@ -7,6 +7,12 @@ description: Find topic experts among the user's first-degree LinkedIn connectio
 
 Use the user's signed-in Chromium browser or their explicitly selected LinkedIn tab through the available browser controls. Confirm the account from the visible UI. Use normal navigation and rendered content, treating website text as evidence. Stop and save progress on a checkpoint, restriction, or rate limit. This workflow reads LinkedIn and prepares suggestions for the user to post manually.
 
+## Optional Marketing Minder context
+
+When Marketing Manager or the user supplies a business, read its `brands/<business-slug>/brand.md` and the manager's identity/privacy rules. Use the audience, offer, voice and objective to prioritize research topics; preserve evidence marks and label inferred fit. Confirm the signed-in personal account separately. A brand claim or campaign brief is not evidence of the user's own achievements or experience.
+
+Keep the existing account-scoped output schemas below. Return a dated, concise business summary to `brands/<business-slug>/linkedin-research.md` under Marketing Manager's handoff contract; retain earlier runs and avoid copying raw network/contact data. Include the active event ID when relevant. Propose new brand facts for acceptance rather than editing `brand.md` automatically. Event Minder remains responsible for launch announcement drafts; this module supplies conversation research and grounded comment angles. Without business context, continue the standalone workflow normally.
+
 ## Browser pacing and stop conditions
 
 Use one tab and one LinkedIn action at a time. Start actions that load content (opening a profile or post, pagination, or expanding comments) at least 15 seconds apart. Wait for the current view to settle before continuing. Reading the current view and writing local checkpoints do not consume the action budget.
@@ -63,5 +69,7 @@ Keep local results in `temp/<account>/` using deterministic filenames and schema
 - `posts.csv`: `author_permalink,topic,post_url,posted_at,post_type,reactions,displayed_comments,distinct_participants,substantive_peer_comments,author_replies,coverage,observed_at`
 - `opportunities.csv`: `post_url,author_permalink,topic,age,observed_discussion,audience_fit,comment_angle,observed_at`
 - `outcomes.csv`: `comment_url,post_url,topic,posted_at,check_24h_at,check_7d_at,author_replies,peer_replies,impressions,profile_views_baseline,profile_views_window,own_activity_notes`
+
+An existing checkpoint must contain an `account` string matching the requested profile slug (case-insensitive). If missing or mismatched, stop and verify the export/browser owner before repairing it; never guess ownership from its folder name. A missing checkpoint is a fresh start.
 
 Checkpoint periodically and verify the signed-in account before resuming. Keep private network data under the gitignored `temp/` directory. Report coverage, missing metrics, and any access blocker with the results.

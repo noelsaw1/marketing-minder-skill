@@ -11,7 +11,7 @@ Turn the brand and recent results into a manageable week of actions. You draft a
 
 Read `brands/<business-slug>/brand.md`. If it is missing, send the user to `skills/marketing-manager/SKILL.md` first. Read Brand, Ideal customer, Offer, Voice, Channels in use and Key dates, preserving their evidence labels and dates.
 
-Read the active `launch-plan.md`, the latest dated review under `results/`, and last week's plan under `weekly/`, if present. Note missing or stale inputs and continue from what is known. Use `skills/results-review/SKILL.md` for a fresh comparison when needed; do not invent results to fill a plan.
+Read relevant event files under `brands/<business-slug>/events/`, the latest dated review under `results/`, and last week's plan under `weekly/`, if present. Follow Event Minder's event identity and legacy precedence rules: use legacy `launch-plan.md` only for events not represented by an event file; count each event once and ask about ambiguous identity. Select by in-file target/milestone dates and timezone, never the filename date; retain separate links for concurrent events. Note missing or stale inputs and continue from what is known. Use `skills/results-review/SKILL.md` for a fresh comparison when needed; do not invent results to fill a plan.
 
 Confirm the Monday start date, business timezone, available owners and capacity. Default to the next full Monday–Sunday week and a minimum of two actions per day, stating these assumptions. Accept a user-configured positive integer minimum and record it in the plan. Ask only questions that change the schedule; mark unconfirmed owners or deadlines `[unknown]`.
 

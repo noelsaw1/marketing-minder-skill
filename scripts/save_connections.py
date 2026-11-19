@@ -31,6 +31,8 @@ def normalize(record):
     match = re.fullmatch(r"/in/([^/?#]+)/?", url.path)
     if (
         url.scheme != "https"
+        or url.username is not None
+        or url.password is not None
         or url.port is not None
         or not (
             host in {"linkedin.com", "www.linkedin.com"}

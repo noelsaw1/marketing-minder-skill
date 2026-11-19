@@ -4,7 +4,9 @@ Review a small store's pages, buying path, offers and channels using the shared 
 
 ## Before you start
 
-Read `brands/<business-slug>/brand.md`, especially Offer, Ideal customer, Voice, Channels in use, Key dates and Site notes. If it is missing, send the user to `skills/marketing-manager/SKILL.md` first. Read any existing market-fit review and active `launch-plan.md`; reuse their findings rather than repeating their audits.
+Read `brands/<business-slug>/brand.md`, especially Offer, Ideal customer, Voice, Channels in use, Key dates and Site notes. If it is missing, send the user to `skills/marketing-manager/SKILL.md` first. Read any existing market-fit review and relevant event plans under `brands/<business-slug>/events/`; reuse their findings rather than repeating their audits.
+
+Follow Event Minder's identity and legacy precedence rules: select by in-file dates and goals, not filename dates; use legacy `launch-plan.md` only for an event without an event file. Link each event once and ask about ambiguous identity.
 
 Carry the existing evidence labels on every finding and recommendation: `[site: /path]` for a page read this run, `[owner]` for information the user supplied, `[guess]` for an inference with its basis, and `[unknown]` for something not checked or unavailable. Keep an inherited label's source and date; do not imply an old page was read this run.
 
@@ -38,7 +40,7 @@ Draft an offer sheet for the user to configure in Shopify or WooCommerce. Distin
 
 Specify eligible products and customers, exclusions, minimum spend or quantity, discount amount, usage limits, start and end with timezone, and whether it combines with other discounts or free shipping. Ask the owner to verify supported scheduling and stacking in their current platform and installed extensions; leave unverified behavior `[unknown]`.
 
-Have the owner test an eligible cart, an excluded cart, stacking and expiry. Draft matching announcement, product and checkout wording, plus removal of expired copy. Link the offer sheet to Event Minder's seasonal campaign in `launch-plan.md`; Event Minder owns the event timeline. Never invent scarcity, a sale deadline or stock claims.
+Have the owner test an eligible cart, an excluded cart, stacking and expiry. Draft matching announcement, product and checkout wording, plus removal of expired copy. Link the offer sheet to Event Minder's seasonal campaign's event file; Event Minder owns the event timeline. Never invent scarcity, a sale deadline or stock claims.
 
 ## Small-store channels
 
