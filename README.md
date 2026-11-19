@@ -20,6 +20,7 @@ The agent drafts and advises. You post, publish and change your own site. Everyt
 | [E-commerce recipe](recipes/ecommerce.md) | Reviews Shopify or WooCommerce store pages, checkout, offers and small-store channels, including print-on-demand. | Available |
 | [Results review](skills/results-review/SKILL.md) | Compares two periods of site, social and store results from CSV or a read-only connector and proposes next steps. | Available |
 | [Weekly plan](skills/weekly-plan/SKILL.md) | Drafts a Monday–Sunday action plan, carries unfinished work forward and builds toward upcoming events. | Available |
+| [Grok Bot content drafts](integrations/grok-bot/SKILL.md) | Drafts X, LinkedIn and Instagram posts from the brand file and active event files, and queues them for approval. | Available |
 
 ## Start with the brand file
 
@@ -102,6 +103,20 @@ python3 scripts/browser_queue.py next-batch --account your-profile-slug \
 Both commands return JSON. Status separates inventory rows awaiting inspection from profiles marked inspected or inaccessible in the checkpoint. Inventory rows can come from an export or browser observation. The CSV has no source column. The queue also includes pending URLs from the checkpoint.
 
 Pass repeatable `--priority-url` flags in preference order for people with evidence of topic fit, such as a relevant role in the original export or a post you've already seen. The CLI fills the rest of the batch in permalink order. It defaults to 30 actions per run and reserves four per profile. Set the cost for your workflow and pass actions already used in the current run. Continue enforcing the actual action cap while browsing. A saved blocker yields an empty batch until resolved.
+
+## Grok Bot content drafts
+
+[Grok Bot content drafts](integrations/grok-bot/SKILL.md) turns the brand file, and any Event Minder files under `brands/<business>/events/`, into a week of X, LinkedIn and Instagram drafts. A routine can run that draft on a schedule. You approve and publish. The queue is files you can open, not a setup that lives only inside one bot account.
+
+The skill, platform rules and routine prompts are in [`integrations/grok-bot/`](integrations/grok-bot/README.md). `scripts/content_queue.py` reads the brand file, schedules from the target date written inside each event file, checks platform limits, and exports a Buffer CSV, a Postiz draft file, and an X drafts file. The queue lands in gitignored `brands/<business>/content/`.
+
+```sh
+python3 scripts/content_queue.py calendar --business example --week 2026-11-16 --timezone America/Los_Angeles
+python3 scripts/content_queue.py validate --business example
+python3 scripts/content_queue.py export --business example --format all
+```
+
+Install steps, the Monday and weekday schedules, and the optional Postiz draft command are in the [setup notes](integrations/grok-bot/README.md). The planned SaaS solopreneur recipe still covers Product Hunt, Reddit and TikTok. This module is the draft queue for X, LinkedIn and Instagram.
 
 ## Your data and backups
 
