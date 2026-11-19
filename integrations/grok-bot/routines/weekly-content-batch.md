@@ -20,7 +20,7 @@ Look up connectors on this run. Read recent X posts when a reading connector is 
 
 From the repository root, run the calendar, apply, validate and export commands in the skill. Write brands/BUSINESS_SLUG/content/drafts.json before apply. python3 scripts/content_queue.py is the queue script.
 
-Save each validated X post with the X drafts connector, in order. Leave the Buffer CSVs for me to upload as drafts. Do not upload them and do not schedule them.
+Return the validated X export path. If I have requested remote X drafts and a draft-only connector is available, follow the skill’s handoff rules for only the X slot IDs filled this run. Leave the Buffer CSVs for me to upload as drafts. Do not upload them and do not schedule them.
 
 Do not run the publish command unless I asked you to create Postiz drafts in this run.
 

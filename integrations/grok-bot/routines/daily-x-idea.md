@@ -24,7 +24,7 @@ TODAY is today's date as YYYY-MM-DD. If the command says an X item already exist
 
 Write the post or a short thread from brands/BUSINESS_SLUG/brand.md and from any event file whose in-file date makes today a teaser, countdown, announcement or follow-up. Ignore the date in the filename.
 
-Apply the draft, validate, and export with --format x-drafts. Save it through the X drafts connector. Do not publish. If today's slot is already filled and saved, leave it and say so.
+Apply the draft, validate, and export with --format x-drafts. Return the export path. If I have requested a remote X draft and a draft-only connector is available, follow the skill’s handoff rules for only the slot filled this run. If today’s slot was already filled, leave it in place and report that no new draft was created.
 
 Reply with the draft id and whether you created a new X draft.
 ```

@@ -94,7 +94,9 @@ The export writes three kinds of file under `brands/<business-slug>/content/expo
 - `*-postiz-drafts.json`, a wrapper of Postiz draft bodies. `date` is the queue's local time. It is not a UTC instant.
 - `*-x-drafts.json`, ordered post text for the X drafts connector.
 
-For each item in the X file, ask the X drafts connector to save a draft of that exact text, in order. For a thread, save one draft per post and tell the person the order. Stop there. Discard a draft only when the person names the draft to drop.
+Treat the X export as a queue snapshot. Return its path for review by default. Only save remote X drafts when the person has requested it and a draft-only X connector is available. Otherwise leave the export for manual handoff.
+
+For an authorized connector handoff, use only the slot IDs filled in this run, intersected with the X export. If no X slot was filled, skip the connector. Save exact text in order. For a thread, save one draft per post and tell the person the order. Keep the confirmed connector draft IDs with the local review record, keyed by slot ID and post position. On retry, skip confirmed posts and stop for reconciliation if a previous attempt might have saved a post without returning a draft ID. Discard a draft only when the person names the draft to drop.
 
 Tell the person the Buffer CSV paths and that they upload each file in Buffer and choose save as drafts. Instagram rows still need a public image before that upload will accept them.
 

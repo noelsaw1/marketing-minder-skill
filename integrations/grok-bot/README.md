@@ -67,7 +67,7 @@ python3 scripts/content_queue.py export --business example --format all
 
 ## Drafts and the optional Postiz command
 
-Default path: the script writes files. You upload the Buffer CSV and choose save as drafts. The bot saves X text through the drafts connector. Nobody publishes.
+Default path: the script writes files. You upload the Buffer CSV and choose save as drafts. The X export stays local by default. On request, a draft-only connector can save the X slots filled in the current run. The export can also be handed over for manual use.
 
 `publish` is a separate command. It does nothing unless you pass `--approve-publish` and set `CONTENT_QUEUE_ALLOW_PUBLISH=1`. Even then it only creates Postiz drafts (`type: draft`). It does not send `schedule` or `now`. It does not post to X. It skips items already marked `queued-draft`. `--dry-run` prints the draft bodies and does not call the network.
 
