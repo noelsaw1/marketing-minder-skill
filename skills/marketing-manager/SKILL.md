@@ -127,7 +127,7 @@ Name the module that fits the request, and say plainly when it does not exist ye
 - Growth for a Shopify or WooCommerce store that may also sell in person: `recipes/ecommerce.md`.
 - Comparing site, social and store results and proposing next steps: `skills/results-review/SKILL.md`.
 - A recurring Monday–Sunday marketing plan: `skills/weekly-plan/SKILL.md`.
-- A batch of X, LinkedIn and Instagram drafts, including a Grok Bot routine: `integrations/grok-bot/SKILL.md`.
+- A batch of X, LinkedIn and Instagram drafts, with reusable routine prompts: `skills/content-drafts/SKILL.md`.
 
 ## Hand off to LinkedIn Amplifier
 
