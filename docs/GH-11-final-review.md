@@ -109,4 +109,13 @@ Basis: The full instruction file meets issue #11 and the shipping-audit plan. No
 
 Relay closed (Approved), no further turn needed.
 
+
+### Attestation · relay-drive — 2026-11-24T19:02:32Z
+task: RELAY-MMS-GH11-FINAL
+reviewer: codex
+status: Approved
+reviewed-head: f96d5cfdbb635f250cd68aa6d1ed3911f597ab39
+added-range: 10297+1882
+added-sha256: 4bc11ea8ccca271196f0dcd8e5f0defb127559fac23ecf56380a558ad32f96f6
+gate-run: undeclared
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
