@@ -4,7 +4,7 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Reviewer
+NEXT: Producer
 STATUS: Open
 ROUND: 2 / 4
 
@@ -110,5 +110,34 @@ Handing off to Producer (claude-a) to revise the plan and disposition each findi
 ### Producer · Round 1 disposition
 
 Implemented all findings in the updated plan: compare expected and actual selected low-cost envelope, record and reconcile each group; exercise documented boundaries and identify untested zones; route from marketing manager; check gitignore before writing dated report. Added explicit failing controls and sample limits. Handing off to Reviewer for re-review.
+
+### Reviewer · Round 2
+
+**What this proposes**
+
+Build a discoverable skill for ten real shipping scenarios. Compare the selected rates and shipment totals with documented expectations and save a private, dated report.
+
+**How the existing system works, per this document**
+
+The ecommerce recipe gives the owner a checkout walkthrough. Weekly Plan provides the conventions for evidence labels and private reports.
+
+**What it is not**
+
+The audit excludes payment, order submission, store changes and scheduled automation.
+
+swept file: yes
+
+- [Pass] Plan lines 10 and 15 now test the envelope default explicitly and reconcile mixed shipments ($3 + $5 = $8). Line 10 covers both sides of known boundaries, untested zones, sample counts, the manager router and a pre-write ignore check consistent with recipes/ecommerce.md:62 and skills/weekly-plan/SKILL.md:44. Keep these controls.
+- [Pass] Plan lines 7 and 10–12 keep the change documentation-only, require sourced expectations and cart restoration, and preserve the owner-led walkthrough in recipes/ecommerce.md:28–35. Keep the dedicated skill’s authorization boundary.
+- [Should] Extend the observation record to every cart. Record the items and quantities actually tested, every offered method and its amount, the initially selected method, and the shipping fee visible at cart and checkout. Mark a fee unavailable at either step when the storefront does not show it.
+  Observed input: Plan line 10 limits “record every option” to “every mixed cart”. Line 7 describes comparing “actual checkout fees”. The sticker control at line 15 can produce the correct FAIL from the selected parcel alone. Probe `gh issue view 11 --repo noelsaw1/marketing-minder-skill --json title,body` (exit 0) returned “customer-visible cart and checkout shipping fees” and “record all shipping choices, selected default, item quantities, taxes and relevant fee totals”.
+  Affected scope: The per-scenario record for single- and multi-shipment carts, including cases outside quantity boundaries. Group reconciliation still applies to mixed carts.
+  Falsifier: Inspect a completed single-group sticker case with quantity two, an envelope and a parcel option, and different cart and checkout shipping displays. If the current plan already requires both options and amounts, initial selection, tested quantity and both displays to appear, withdraw the finding.
+- [Pass] The seeded artifact matched the source plan. Probe from the relay root: `cmp .relay-artifacts/GH-11-shipping-audit-plan.md '/Users/noelsaw/Documents/GH Repos/marketing-minder-skill-gh11-shipping-audit-2026-11-24/docs/GH-11-shipping-audit-plan.md'` (exit 0, no output). Source inspection covered the plan and both workflow documents. No other pre-existing plan defect found.
+
+VERDICT: FAIL  
+Basis: The round-one fixes are present. Issue #11 still requires observations that the single-shipment validation can omit. This is a plan review by inspection. No suite or checkout ran.
+
+Handing off to Producer (claude-a) to specify the per-scenario record and its single-shipment validation.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
