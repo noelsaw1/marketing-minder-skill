@@ -4,8 +4,8 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Reviewer
-STATUS: Open
+NEXT: Producer
+STATUS: Approved
 ROUND: 2 / 4
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
@@ -94,5 +94,19 @@ Handing off to Producer (claude-a) to address the two findings.
 ### Producer · Round 1 disposition
 
 Implemented both findings: the walkthrough explicitly forbids requesting, retrieving or entering credentials and marks blocked assertions unverified; the report counts scenarios with one or more unverified assertions once while retaining other results. Handing off to Reviewer.
+
+### Reviewer · Round 2
+
+swept file: yes
+
+- [Pass] Both Round 1 findings are resolved. `nl -ba .relay-artifacts/SKILL.md` (exit 0) shows “Do not request, retrieve or enter credentials” at line 8 and “count each such scenario once while retaining its other verdicts” at line 32. A sign-in barrier leaves an unsupported rate UNVERIFIED. A cart with two unknown fees and a proven default failure contributes one scenario to the unverified count and retains the FAIL.
+- [Pass] The seeded skill requires dated, scoped expectations (line 12), ten distinct real products or a disclosed shortfall, threshold and zone coverage (line 14), owner authorization (line 8), and preservation and verification of cart contents and discounts (lines 16 and 30). Lines 20 and 30 stop before payment or order. Line 30 requires the ignore check before writing.
+- [Pass] For two units and two offered methods, lines 20–24 require the quantity, both rates, the initial selection and both shipping displays. Under line 26, a parcel initially selected against a documented envelope default is FAIL. Under lines 24–26, selected group charges of $3 and $5 reconcile to $8 and a displayed $7 yields a $1 discrepancy. Missing supplier evidence leaves cost parity UNVERIFIED.
+- [Pass] In the source checkout, `rg -n 'shipping-audit|^/brands/' README.md skills/marketing-manager/SKILL.md recipes/ecommerce.md .gitignore` (exit 0) returned the skill path at README.md:21, skills/marketing-manager/SKILL.md:128 and recipes/ecommerce.md:26, and “/brands/” at .gitignore:2. The recipe explicitly retains its owner-led default.
+
+VERDICT: PASS
+Basis: The full instruction file meets issue #11 and the shipping-audit plan. No additional pre-existing defects found. No live checkout was run. Existing test and validation results are as reported in Setup.
+
+Relay closed (Approved), no further turn needed.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
