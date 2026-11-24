@@ -209,4 +209,13 @@ Basis: The plan addresses issue #11 by inspection. The full sweep found no addit
 
 Relay closed (Approved), no further turn needed.
 
+
+### Attestation · relay-drive — 2026-11-24T18:58:16Z
+task: RELAY-MMS-GH11-PLAN-RECOVERY
+reviewer: codex
+status: Approved
+reviewed-head: 6698468b6c7e4e0836cda24d5b6f6610ac43e523
+added-range: 18085+2174
+added-sha256: 144f35f9c2439103c301ab6a081bb12c0d2a74bf484293081cfc0e1b340fc753
+gate-run: undeclared
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
