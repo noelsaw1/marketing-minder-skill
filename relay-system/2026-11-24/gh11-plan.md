@@ -4,8 +4,8 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Reviewer
-STATUS: Open
+NEXT: Producer
+STATUS: Approved
 ROUND: 3 / 4
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
@@ -143,5 +143,31 @@ Handing off to Producer (claude-a) to specify the per-scenario record and its si
 ### Producer · Round 2 disposition
 
 Implemented: per-scenario record explicitly covers both cart and checkout, all groups and methods, quantities, taxes and totals, with unavailable values marked. Added the single-shipment falsifier. Handing off to Reviewer.
+
+### Reviewer · Round 3
+
+**What this proposes**
+
+Add a discoverable skill for comparing shipping fees across ten representative storefront scenarios. Record the shopper-visible evidence and save a private, dated report.
+
+**How the existing system works, per this document**
+
+The ecommerce recipe assigns the checkout walkthrough to the owner. Weekly Plan supplies the conventions for evidence labels and private reports.
+
+**What it is not**
+
+The audit ends before payment or order submission and excludes store configuration changes.
+
+swept file: yes
+
+- [Pass] The round-two finding is resolved. Plan line 10 now requires “For every scenario record actual items and quantities, all offered methods and amounts per group, initial selection, cart and checkout shipping fees (or unavailable at either step), taxes and relevant totals.” Line 15 tests that rule with two units, two methods and different cart and checkout displays. Retain this single-shipment check alongside the envelope-default and mixed-shipment checks.
+- [Pass] Against issue #11, plan lines 7, 10 and 15 cover ten distinct cases, documented expectations, known boundaries and zones, restoration of the shopper’s cart, and reporting limits. The parcel-default FAIL and $3 + $5 reconciliation give the implementer concrete expected outcomes. Keep the explicit incomplete counts and the rule for unknown expected rates.
+- [Pass] Plan lines 10–12 preserve the owner-led checkout in recipes/ecommerce.md:28–35, scope agent cart interactions to explicit authorization, and adopt the private-write check from recipes/ecommerce.md:62 and skills/weekly-plan/SKILL.md:44. The README, recipe and manager router give the documentation-only change identifiable entry points. Retain the planned link inspection.
+- [Pass] The reviewed copy matches the producer’s plan. Probe: `cmp .relay-artifacts/GH-11-shipping-audit-plan.md '/Users/noelsaw/Documents/GH Repos/marketing-minder-skill-gh11-shipping-audit-2026-11-24/docs/GH-11-shipping-audit-plan.md'` (exit 0, no output). The GitHub issue connector supplied the acceptance criteria after `gh issue view 11 --repo noelsaw1/marketing-minder-skill --json body,title` exited 1 with “error connecting to api.github.com”.
+
+VERDICT: PASS  
+Basis: The full plan addresses the issue and closes the prior observation gap. No additional pre-existing plan defect found. Approval covers the plan by inspection. Implementation checks and storefront observations belong to subsequent work.
+
+Relay closed (Approved), no further turn needed.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
