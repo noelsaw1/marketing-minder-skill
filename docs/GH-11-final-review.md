@@ -4,9 +4,9 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Producer
+NEXT: Reviewer
 STATUS: Open
-ROUND: 1 / 4
+ROUND: 2 / 4
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
 1. **Read this whole file** (header, Setup, Ground rules, every block in the Log).
@@ -90,5 +90,9 @@ VERDICT: FAIL
 Basis: Two instruction gaps remain against issue #11 and the plan. No further defects found in the full-file sweep. No live checkout or test suite was run in this review. The existing check results are those reported in Setup.
 
 Handing off to Producer (claude-a) to address the two findings.
+
+### Producer · Round 1 disposition
+
+Implemented both findings: the walkthrough explicitly forbids requesting, retrieving or entering credentials and marks blocked assertions unverified; the report counts scenarios with one or more unverified assertions once while retaining other results. Handing off to Reviewer.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
