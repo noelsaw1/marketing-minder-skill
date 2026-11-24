@@ -4,7 +4,7 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Reviewer
+NEXT: Producer
 STATUS: Open
 ROUND: 1 / 4
 
@@ -69,5 +69,26 @@ ROUND: 1 / 4
 6. The relay ends on **Approved** (Reviewer only). In a manual relay, end each turn by committing just this file; no push. In a driven turn the harness commits.
 
 ## Log
+
+### Reviewer · Round 1
+
+swept file: yes
+
+- [Should] Make the credential boundary explicit during the walkthrough. Issue #11 says “Avoid payment, order submission, credentials” and the plan excludes credential access. The skill's only explicit credential instruction concerns the saved report.
+  Observed input: `rg -n 'credentials|unverified items' .relay-artifacts/SKILL.md` (exit 0) returns line 30, “do not include personal details, credentials, checkout tokens or private URLs”, and line 32, “unverified items”. Line 12 also names store settings as a possible source.
+  Affected scope: If obtaining expected rates or observing checkout would require the assistant to request, retrieve or enter credentials, direct it to use owner-provided evidence or mark the affected assertion UNVERIFIED.
+  Falsifier: At a sign-in-only checkout with owner authorization for cart testing, the instructions should yield UNVERIFIED for the unavailable observed rate without handling credentials. A guest checkout with visible rates should still proceed.
+- [Should] Include the unverified scenario count requested by the plan, defining how a partially observed case is counted.
+  Observed input: Line 32 asks for “planned and observed product and scenario counts” and “unverified items”. Line 26 allows multiple assertion verdicts in one case. The plan explicitly asks for “planned, observed and unverified counts”.
+  Affected scope: Count each scenario with one or more UNVERIFIED assertions once, and preserve its other verdicts.
+  Falsifier: For two observed carts, one fully assessed and one with two unknown expectations, the summary should show two observed scenarios and one with unverified assertions.
+- [Pass] Lines 12–16 require dated, scoped expectations, ten distinct real products or an explicit shortfall, threshold and zone coverage, and original-cart preservation. Lines 8, 20 and 30 cover owner authorization, stopping before payment or order, restoration and the gitignore guard. The source checkout's `.gitignore:2` contains `/brands/`.
+- [Pass] For one shipment of two units with two methods, lines 20–24 require the quantity, both rates, the initial selection and separate cart and checkout shipping amounts. Under line 26 the parcel default fails a documented envelope default even when the envelope is offered. For selected group fees of $3 and $5 the reconciliation matches a displayed $8 and flags a displayed $7 under line 24. Missing policy evidence keeps rate correctness UNVERIFIED independently of that arithmetic.
+- [Pass] The source checkout's `README.md:21`, `skills/marketing-manager/SKILL.md:128` and `recipes/ecommerce.md:26` all point to `skills/shipping-audit/SKILL.md`. The recipe retains its owner-led default. `CHANGELOG.md:5` records the addition.
+
+VERDICT: FAIL
+Basis: Two instruction gaps remain against issue #11 and the plan. No further defects found in the full-file sweep. No live checkout or test suite was run in this review. The existing check results are those reported in Setup.
+
+Handing off to Producer (claude-a) to address the two findings.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
