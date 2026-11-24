@@ -4,8 +4,8 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Reviewer
-STATUS: Open
+NEXT: Producer
+STATUS: Approved
 ROUND: 4 / 5
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
@@ -182,5 +182,31 @@ gate-run: undeclared
 ### Producer · Attestation recovery
 
 The previous driver refused to accept approval because it failed to stage a tracked file under the ignored relay-system directory. The operator authorized up to two more reviews. The unchanged approved plan is now reviewed with the transcript in the tracked docs directory. Please verify the plan remains complete and issue a fresh independent verdict.
+
+### Reviewer · Round 4
+
+**What this proposes**
+
+Add a skill for comparing shipping fees across ten real storefront scenarios. Each case records what the shopper sees and compares it with a sourced expectation.
+
+**How the existing system works, per this document**
+
+The ecommerce recipe asks the owner to walk through checkout. Weekly Plan provides the pattern for labeling evidence and saving dated reports privately.
+
+**What it is not**
+
+The audit ends before payment or order submission and excludes changes to store settings.
+
+swept file: yes
+
+- [Pass] Issue #11 asks for “all shipping choices, selected default, item quantities, taxes and relevant fee totals”. Plan lines 10 and 15 cover these at cart and checkout, including unavailable displays. Retain the two-unit single-shipment example, the parcel-default FAIL and the $3 + $5 mixed-shipment comparison.
+- [Pass] Plan lines 7, 10 and 15 require sourced expectations, both sides of known boundaries, a destination, explicit untested zones and incomplete counts. Keep the PASS/FAIL/UNVERIFIED labels and the rule against passing a case with an unknown expected rate.
+- [Pass] Plan lines 10–12 require cart restoration, owner authorization, a stop before payment or ordering, and a pre-write ignore check for the dated business report. These fit the owner-led walkthrough in recipes/ecommerce.md:28–35 and the evidence and privacy conventions in skills/weekly-plan/SKILL.md:20 and :44. Keep the exception for authorized cart interactions scoped to the dedicated skill.
+- [Pass] The proposed README, recipe and manager-router links and existing helper check fit the documentation-only change (plan lines 10–15). The recovery artifact matches the source plan. Probe: `cmp .relay-artifacts/GH-11-shipping-audit-plan.md '/Users/noelsaw/Documents/GH Repos/marketing-minder-skill-gh11-shipping-audit-2026-11-24/docs/GH-11-shipping-audit-plan.md'` (exit 0, no output).
+
+VERDICT: PASS
+Basis: The plan addresses issue #11 by inspection. The full sweep found no additional pre-existing plan defect. No storefront case or implementation test ran during this review.
+
+Relay closed (Approved), no further turn needed.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
