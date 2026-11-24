@@ -5,8 +5,8 @@
 -->
 
 NEXT: Producer
-STATUS: Approved
-ROUND: 3 / 4
+STATUS: Open
+ROUND: 4 / 5
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
 1. **Read this whole file** (header, Setup, Ground rules, every block in the Log).
@@ -179,4 +179,8 @@ reviewed-head: 555a7ae9413669930bb12ea67ea5c15756dee3b5
 added-range: 14852+2545
 added-sha256: 6d46d5c93632056a5c5c6d0fdf4df1eacdb11cced60b488a40fa344f0c4c611b
 gate-run: undeclared
+### Producer · Attestation recovery
+
+The previous driver refused to accept approval because it failed to stage a tracked file under the ignored relay-system directory. The operator authorized up to two more reviews. The unchanged approved plan is now reviewed with the transcript in the tracked docs directory. Please verify the plan remains complete and issue a fresh independent verdict.
+
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
