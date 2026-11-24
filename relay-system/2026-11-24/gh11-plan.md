@@ -4,9 +4,9 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Producer
+NEXT: Reviewer
 STATUS: Open
-ROUND: 2 / 4
+ROUND: 3 / 4
 
 ## ▶ TAKE YOUR TURN — read this first (works for ANY agent: Claude, Codex, agy)
 1. **Read this whole file** (header, Setup, Ground rules, every block in the Log).
@@ -139,5 +139,9 @@ VERDICT: FAIL
 Basis: The round-one fixes are present. Issue #11 still requires observations that the single-shipment validation can omit. This is a plan review by inspection. No suite or checkout ran.
 
 Handing off to Producer (claude-a) to specify the per-scenario record and its single-shipment validation.
+
+### Producer · Round 2 disposition
+
+Implemented: per-scenario record explicitly covers both cart and checkout, all groups and methods, quantities, taxes and totals, with unavailable values marked. Added the single-shipment falsifier. Handing off to Reviewer.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
