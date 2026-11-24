@@ -125,6 +125,7 @@ Name the module that fits the request, and say plainly when it does not exist ye
 - Launch plans, product drops, seasonal events, and giveaways: `skills/event-minder/SKILL.md`.
 - Growth across Product Hunt, Reddit, X, TikTok, LinkedIn and Instagram for a software business: the SaaS recipe module (planned).
 - Growth for a Shopify or WooCommerce store that may also sell in person: `recipes/ecommerce.md`.
+- Testing storefront shipping choices, default rates and checkout fees: `skills/shipping-audit/SKILL.md`.
 - Comparing site, social and store results and proposing next steps: `skills/results-review/SKILL.md`.
 - A recurring Monday–Sunday marketing plan: `skills/weekly-plan/SKILL.md`.
 

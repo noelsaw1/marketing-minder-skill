@@ -23,6 +23,8 @@ Read a collection page and up to three representative product pages. Record thei
 
 ## Funnel and checkout checks
 
+For a ten-product, expected-versus-observed shipping and checkout fee audit, use `skills/shipping-audit/SKILL.md`. Its owner-led default preserves this recipe’s boundary; it can be operated by the assistant when the user authorizes cart testing.
+
 Use supplied analytics or `skills/results-review/SKILL.md` to compare add-to-cart → checkout → purchase counts for the same period and device segment. Distinguish event counts from people or sessions. Calculate step conversion and drop-off only for a compatible funnel; missing tracking is `[unknown]`, not proof that buyers abandoned.
 
 Give the owner this walkthrough to perform on both a phone and desktop:

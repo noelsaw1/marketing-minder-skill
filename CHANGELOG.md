@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a shipping audit skill for ten-product storefront cart and checkout rate checks, default selections, split shipments and private evidence reports.
+
 - Event Minder now saves separate dated event files, makes channel/giveaway sections conditional, and labels unverified account checks UNCHECKED — owner to confirm. Updated all three event-plan readers and preserved pop-up provider choices (Justuno, OptiMonk, Poptin).
 
 - Connected Marketing Manager and LinkedIn Amplifier with an optional brand/campaign handoff and dated business research summaries while preserving standalone use and account-scoped network data.
