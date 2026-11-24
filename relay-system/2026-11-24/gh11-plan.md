@@ -4,7 +4,7 @@
   Scaffolded by relay-automation/new-relay.sh on 2026-11-24.
 -->
 
-NEXT: Reviewer
+NEXT: Producer
 STATUS: Open
 ROUND: 1 / 4
 
@@ -69,5 +69,42 @@ ROUND: 1 / 4
 6. The relay ends on **Approved** (Reviewer only). In a manual relay, end each turn by committing just this file; no push. In a driven turn the harness commits.
 
 ## Log
+
+### Reviewer · Round 1
+
+**What this proposes**  
+Add a dedicated skill for ten representative shipping checks. Compare observed checkout fees with sourced expectations and save the results privately.
+
+**How the existing system works, per this document**  
+The ecommerce recipe gives the owner a general checkout walkthrough. Weekly Plan supplies the model for evidence labels and private dated reports.
+
+**What it is not**  
+The plan excludes payment, orders, configuration changes and scheduled automation.
+
+swept file: yes
+
+- [Blocker] The proposed inspection can accept a sticker test that never checks whether the **low-cost envelope** is the default, or a mixed cart that records a single amount without reconciling the shipments.
+  Observed input: Plan line 10 says “sticker-alone default” and “mixed fulfillment groups where applicable”. Probe `gh issue view 11 --repo noelsaw1/marketing-minder-skill --json title,body` (exit 0) returned “sticker-only low-cost envelope default” and “distinguish individual shipment choices from totals”.
+  Affected scope: Spell out both comparisons. Record all offered methods and the selection for each shipment, then reconcile selected charges to checkout shipping. Distinguish an absent expectation from an observed mismatch.
+  Falsifier: With a documented envelope default, a sticker cart that offers the envelope but preselects parcel must FAIL. Two selected shipment fees of $3 and $5 should reconcile to $8, with all alternatives still visible.
+- [Should] Make case selection cover relevant quantity breaks and destination differences, and bound the conclusion to the sample.
+  Observed input: Plan line 10 specifies “quantities, boundary prices/weights” and “one named test destination”. Issue #11 explicitly asks for “boundary quantities/rates” and to “avoid claiming full coverage from samples”.
+  Affected scope: Build ten distinct cases from real catalog variants/classes. Where policy changes at a quantity or shipping zone, include cases on both sides or identify the missing coverage. Report planned, observed and unverified counts.
+  Falsifier: If a documented rate changes at quantity three, cases at two and three should expose the change. A second zone with a different policy should remain explicitly untested when all observations use the first.
+- [Should] Include the existing skill router in discovery and validation.
+  Observed input: Plan lines 10 and 15 list README and recipe entry points. Probe `rg -n 'weekly-plan|results-review' skills/marketing-manager/SKILL.md` in the source checkout (exit 0) shows routing entries at lines 128–129, including “A recurring Monday–Sunday marketing plan”.
+  Affected scope: Add the shipping-audit intent to that router and inspect its link alongside the README and recipe links.
+  Falsifier: Starting at the marketing-manager routing list, a shipping-fee audit request should resolve to the dedicated skill.
+- [Should] Carry the private-write safeguard into the skill's run instructions.
+  Observed input: Plan line 15 puts “verify gitignored business path” in implementation validation. Both recipes/ecommerce.md:62 and skills/weekly-plan/SKILL.md:44 require the operator to check before writing and stop on failure.
+  Affected scope: Require the same runtime check before saving any audit report. Specify a dated path under the business folder.
+  Falsifier: In a consumer checkout with the brands ignore rule missing, a run must stop before writing the report.
+- [Pass] The documentation-only approach, sourced expectations, cart restoration, and prohibition on ordering are appropriate (plan lines 7, 10–12). Keep the authorization exception scoped to the dedicated skill. The existing walkthrough assigns checkout to the owner and prohibits submitting customer details (recipes/ecommerce.md:28–35).
+- [Unverified — needs clone run] The helper suite was not run in this reviewer turn. README.md:116 limits its coverage to Python helpers. The plan's inspection must establish the shipping instructions themselves.
+
+VERDICT: FAIL  
+Basis: The plan's validation can succeed while omitting two explicit fee comparisons in issue #11. The scenario coverage, discovery and private-write gaps above also need dispositions. No additional pre-existing defect found in the reviewed plan.
+
+Handing off to Producer (claude-a) to revise the plan and disposition each finding.
 
 <!-- ↓↓↓ NEXT TURN goes here (append above nothing — this marker stays last) ↓↓↓ -->
